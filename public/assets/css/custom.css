@@ -1,0 +1,511 @@
+/* ===================================
+   CUSTOM STYLES - DESA AJAKKANG
+   =================================== */
+
+/* CSS Variables */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #313131;
+    --light-color: #f9fafb;
+    --dark-color: #343a40;
+    --green-color: #05833F;
+    --hijau-tua-color: #05833F;
+}
+
+
+
+/* ===================================
+   SAMBUTAN KEPALA DESA SECTION
+   =================================== */
+
+.kepala-desa-img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border: 6px solid #fff;
+}
+
+/* ===================================
+   ADMINISTRASI PENDUDUK SECTION
+   =================================== */
+
+.trend-data-image {
+    max-width: 350px;
+    width: 100%;
+}
+
+.trend-data-image img {
+    object-fit: contain;
+    box-shadow: none;
+}
+
+/* ===================================
+   LAYANAN KAMI SECTION
+   =================================== */
+
+.feature-item-box {
+    background: #fff;
+    padding: 30px 30px 10px 30px    ;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.feature-item-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.icon-wrapper {
+    margin-bottom: 15px;
+}
+
+.icon-wrapper i {
+    font-size: 3rem;
+    color: #28a745;
+}
+
+.title-with-underline {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+.title-with-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ccc;
+    transition: all 0.3s ease;
+}
+
+.feature-item-box:hover .title-with-underline::after {
+    width: 100%;
+    background-color: #28a745;
+}
+
+.feature-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+    color: #333;
+}
+
+.feature-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    color: #28a745;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.read-more:hover {
+    color: #218838;
+}
+
+.read-more i {
+    margin-left: 5px;
+    font-size: 0.9rem;
+}
+
+.g-4 {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 2rem;
+}
+
+
+/* ===================================
+   STRUKTUR ORGANISASI SECTION
+   =================================== */
+
+.struktur-organisasi {
+    padding-top: 40px;
+    background-color: #f9fafb;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title .subtitle {
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+.section-title p {
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.struktur-slider {
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.struktur-item {
+    width: 220px; /* Sedikit dikurangi agar sesuai dengan foto 180px + padding */
+    height: auto;
+    text-align: center;
+    padding: 16px 12px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    min-height: 300px; /* Sesuaikan agar tidak terlalu tinggi */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.struktur-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.struktur-header {
+    margin-bottom: 16px;
+    width: 180px; /* Optional: agar container foto konsisten */
+    height: auto;
+}
+
+.struktur-header img {
+    width: 180px;
+    height: auto; /* Biarkan tinggi menyesuaikan aspect ratio */
+    border-radius: 10px; /* Opsional: sedikit lebih smooth */
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    background-color: #f1f3f5; /* Background fallback jika gambar gagal load */
+}
+
+.struktur-body h5 {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #343a40;
+    font-size: 16px;
+}
+
+.struktur-body span {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.swiper-navigation {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #28a745 !important;
+    background-color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .struktur-item {
+        width: 280px;
+        height: 320px;
+        margin: 0 auto;
+        padding: 0; /* Memastikan kartu berada di tengah */
+    }
+
+    .struktur-header {
+        width: 140px;
+        height: auto; /* Margin bawah untuk jarak dengan teks */
+        display: flex;
+        justify-content: center; /* Pusatkan gambar secara horizontal */
+        align-items: center; /* Pusatkan gambar secara vertikal */
+        overflow: hidden;
+        padding: 0;
+    }
+
+    .struktur-header img {
+        width: 100%;
+        height: 100%;
+        margin: 10px;
+        padding: 0;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block; /* Hilangkan spasi bawah gambar */
+    }
+
+       .struktur-body {
+        text-align: center;
+        padding: 12px 8px 0; /* Padding atas untuk jarak dari foto */
+        width: 100%;
+    }
+
+    .struktur-body h5 {
+        font-size: 14px;
+        margin-bottom: 6px; /* Jarak antara nama dan jabatan */
+    }
+
+    .struktur-body span {
+        font-size: 12px; /* Ukuran font jabatan diperkecil */
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center; /* Pusatkan slide secara horizontal */
+    }
+}
+
+
+/* ===================================
+   CONTACT SECTION
+   =================================== */
+
+.contact {
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 70px;
+    background-color: var(--light-color);
+}
+
+.map-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.map-container h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.google-map {
+    border-radius: 8px;
+    overflow: hidden;
+    height: 320px;
+}
+
+.google-map iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.form-wrapper {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.php-email-form .form-control {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.php-email-form .form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.2rem rgba(74, 124, 89, 0.15);
+}
+
+.php-email-form .form-control::placeholder {
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.php-email-form button[type="submit"] {
+    background: var(--green-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 40px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.php-email-form button[type="submit"]:hover {
+    background: var(--hijau-tua-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.loading,
+.error-message,
+.sent-message {
+    display: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.loading {
+    background: #e9ecef;
+    color: var(--dark-color);
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.sent-message {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* ===================================
+   RESPONSIVE STYLES
+   =================================== */
+
+/* Tablet and below (max-width: 992px) */
+@media (max-width: 992px) {
+    .google-map {
+        height: 280px;
+    }
+
+    .map-container,
+    .form-wrapper {
+        margin-bottom: 25px;
+    }
+}
+
+/* Mobile Large (max-width: 768px) */
+@media (max-width: 768px) {
+    .contact {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .google-map {
+        height: 220px;
+    }
+
+    .php-email-form .form-control {
+        padding: 10px 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Mobile Medium (576px - 835px) */
+@media (min-width: 576px) and (max-width: 835px) {
+    .struktur-item {
+        width: auto;
+        max-width: 250px;
+        margin: 0 auto;
+        padding: 20px 10px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .struktur-header img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .struktur-body h5 {
+        font-size: 15px;
+    }
+
+    .struktur-body span {
+        font-size: 13px;
+    }
+}
+
+/* Mobile Small (max-width: 575px) */
+@media (max-width: 575px) {
+    .struktur-item {
+        width: auto;
+        max-width: 250px;
+        margin: 0 auto;
+        padding: 20px 10px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .struktur-header img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .struktur-body h5 {
+        font-size: 15px;
+    }
+
+    .struktur-body span {
+        font-size: 13px;
+    }
+}
