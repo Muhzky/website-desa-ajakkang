@@ -1144,7 +1144,7 @@ section,
     }
     .sambutan .content p,
     .sambutan .content .fst-italic {
-        font-size: 1rem;
+        font-size: 1.6rem;
         padding: 0 15px;
         text-align: justify;
     }
@@ -1155,6 +1155,11 @@ section,
     .sambutan .accordion-body {
         font-size: 0.95rem;
         padding: 15px;
+    }
+
+    .btn {
+        font-size: 10px;
+        padding: 8px 18px;
     }
 }
 
