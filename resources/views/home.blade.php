@@ -15,7 +15,7 @@
           <h2 class="welcome-title">SELAMAT DATANG</h2>
           <h2 class="welcome-subtitle">DI <span id="typing-text"></span></h2>
         </div>
-        <p>Menjelajahi keindahan, budaya, dan semangat gotong royong.</p>
+        <p class="motto">Menjelajahi keindahan, budaya, dan semangat gotong royong.</p>
 
         <!-- Button -->
         <div class="d-flex justify-content-center gap-3 mt-4">
