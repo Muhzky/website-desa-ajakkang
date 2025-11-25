@@ -1012,7 +1012,12 @@ section,
         font-size: 32px;
     }
     .welcome p {
-        font-size: 10px;
+        font-size: 14px;
+    }
+
+     .btn {
+        font-size: 12px;
+        padding: 8px 18px;
     }
 }
 
@@ -1155,11 +1160,6 @@ section,
     .sambutan .accordion-body {
         font-size: 0.95rem;
         padding: 15px;
-    }
-
-    .btn {
-        font-size: 10px;
-        padding: 8px 18px;
     }
 }
 
