@@ -132,6 +132,7 @@
         font-size: 1.4rem;
         margin-bottom: 1.5rem;
         padding-left: 1rem;
+        border-left: 4px solid var(--primary-color);
     }
     .text-muted{
       font-size: 1.1rem;

@@ -19,7 +19,7 @@
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10">
         <div class="struktur-img-container text-center">
-          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi Desa Ajakkang" class="img-fluid border rounded shadow-sm glightbox pemdes" style="max-height: 600px; object-fit: contain; padding-bottom: 20px;">
+          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi Desa Ajakkang" class="img-fluid border rounded shadow-sm glightbox pemdes" style="max-height: 600px; object-fit: contain;">
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
     <!-- Daftar Pejabat Desa -->
     <div class="row justify-content-center">
       <div class="col-lg-12">
-        <h4 class="fw-bold text-center mb-4">Daftar Pejabat dan Staff Desa</h4>
+        <h4 class="fw-bold text-center mb-4 pt-5">Daftar Pejabat dan Staff Desa</h4>
         <div class="row g-4">
           @foreach([
             ['nama' => 'Andi Baso', 'jabatan' => 'Kepala Desa', 'foto' => 'assets/img/kepala-desa.jpg'],

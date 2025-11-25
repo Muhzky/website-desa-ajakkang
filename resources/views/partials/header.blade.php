@@ -23,7 +23,7 @@
                     <ul>
                         <li><a href="{{ route('pages.transparansi.anggaran') }}">Transparansi Anggaran</a></li>
                         <li><a href="{{ route('pages.transparansi.laporan-kegiatan') }}">Laporan Kegiatan</a></li>
-                        <li><a href="#">Dokumen Perencanaan</a></li>
+                        <li><a href="{{ route('pages.transparansi.perencanaan') }}">Dokumen Perencanaan</a></li>
                         <li><a href="#">Bumdesa dan Kopdes MP</a></li>
                     </ul>
                 </li>
