@@ -140,7 +140,7 @@
                             </a>
                         </div>
                     </div>
-  444444444444444444444444444444444444444444444              @empty
+          @empty
                     <div class="alert alert-info">
                         <i class="bi bi-info-circle me-2"></i>
                         Belum ada data transparansi anggaran.

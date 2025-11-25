@@ -62,8 +62,8 @@ Route::get('/layanan/layanan-pengaduan', function () {
 Route::prefix('transparansi')->name('pages.transparansi.')->group(function () {
     Route::get('/anggaran', [TransparansiController::class, 'anggaran'])
         ->name('anggaran');
-    Route::get('/laporan', [TransparansiController::class, 'laporan'])
-        ->name('laporan');
+    Route::get('/laporan-kegiatan', [TransparansiController::class, 'laporan'])
+        ->name('laporan-kegiatan');
     Route::get('/perencanaan', [TransparansiController::class, 'perencanaan'])
         ->name('perencanaan');
     Route::get('/bumdesa', [TransparansiController::class, 'bumdesa'])

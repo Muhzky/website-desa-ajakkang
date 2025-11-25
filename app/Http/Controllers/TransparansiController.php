@@ -19,7 +19,7 @@ class TransparansiController extends Controller
      */
     public function laporan()
     {
-        return view('pages.transparansi.laporan');
+        return view('pages.transparansi.laporan-kegiatan');
     }
 
     /**

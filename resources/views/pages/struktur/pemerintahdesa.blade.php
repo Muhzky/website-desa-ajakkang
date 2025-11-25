@@ -19,7 +19,7 @@
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10">
         <div class="struktur-img-container text-center">
-          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi Desa Ajakkang" class="img-fluid border rounded shadow-sm" style="max-height: 600px; object-fit: contain; padding-bottom: 20px;">
+          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi Desa Ajakkang" class="img-fluid border rounded shadow-sm glightbox pemdes" style="max-height: 600px; object-fit: contain; padding-bottom: 20px;">
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <h4 class="fw-bold text-center mb-4">Daftar Pejabat dan Staff Desa</h4>
         <div class="row g-4">
           @foreach([
-            ['nama' => 'Andi Baso', 'jabatan' => 'Kepala Desa', 'foto' => 'assets/img/kepala-desa.png'],
+            ['nama' => 'Andi Baso', 'jabatan' => 'Kepala Desa', 'foto' => 'assets/img/kepala-desa.jpg'],
             ['nama' => 'Sitti Nurhalima', 'jabatan' => 'Sekretaris Desa', 'foto' => 'images/sekretaris-desa.jpg'],
             ['nama' => 'Muhammad Idris', 'jabatan' => 'Kaur Umum & Perencanaan', 'foto' => 'images/kaur-umum.jpg'],
             ['nama' => 'Dewi Sartika', 'jabatan' => 'Kaur Keuangan', 'foto' => 'images/kaur-keuangan.jpg'],
@@ -65,7 +65,7 @@
   }
 
   .struktur-kepengurusan {
-    padding: 0 0 50px 0;
+    padding: 20px 0 100px 0;
   }
 
   .struktur-img-container img {
@@ -88,10 +88,17 @@
     width: 180px;
     height: auto; /* Rasio 3:4 → 140 / 187 ≈ 0.75 */
     object-fit: cover;
-    border: 2px solid var(--text);
     border-radius: 4px;
     background-color: #f8f9fa;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+     const lightbox = GLightbox({
+    selector: '.pemdes'
+  });
+</script>
 @endpush

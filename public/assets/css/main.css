@@ -1003,19 +1003,19 @@ section,
 }
 @media (min-width: 320px) and (max-width: 767px) {
     .welcome-title {
-    font-size: 2rem; /* ~32px */
-  }
-  .welcome-subtitle {
-    font-size: 1.6rem; /* ~26px */
-  }
-  .welcome h2 {
-    font-size: 32px;
-  }
-
-  .welcome p {
-    font-size: 10px;
-  }
+        font-size: 2rem; /* ~32px */
+    }
+    .welcome-subtitle {
+        font-size: 1.6rem; /* ~26px */
+    }
+    .welcome h2 {
+        font-size: 32px;
+    }
+    .welcome p {
+        font-size: 10px;
+    }
 }
+
 
 
 /*--------------------------------------------------------------
@@ -1134,33 +1134,30 @@ section,
   }
 }
 
-@media (max-width: 767.98px) {
-  .sambutan .text-center h2 {
-    font-size: 1.875rem; /* ~30px */
-  }
-
-  .sambutan .rounded-circle {
-    width: 180px !important;
-    height: 180px !important;
-  }
-
-  .sambutan .content p,
-  .sambutan .content .fst-italic {
-    font-size: 1rem;
-    padding: 0 15px;
-    text-align: justify;
-  }
-
-  .sambutan .accordion-button {
-    font-size: 1rem;
-    padding: 12px 15px;
-  }
-
-  .sambutan .accordion-body {
-    font-size: 0.95rem;
-    padding: 15px;
-  }
+@media (min-width: 320px) and (max-width: 767px) {
+    .sambutan .text-center h2 {
+        font-size: 1.875rem; /* ~30px */
+    }
+    .sambutan .rounded-circle {
+        width: 180px !important;
+        height: 180px !important;
+    }
+    .sambutan .content p,
+    .sambutan .content .fst-italic {
+        font-size: 1rem;
+        padding: 0 15px;
+        text-align: justify;
+    }
+    .sambutan .accordion-button {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+    .sambutan .accordion-body {
+        font-size: 0.95rem;
+        padding: 15px;
+    }
 }
+
 
 /*--------------------------------------------------------------
 # About Section
@@ -1355,6 +1352,20 @@ section,
         justify-content: center;
     }
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .about .content h2 {
+        font-size: 32px;
+    }
+    .about .stats-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .about .cta-section {
+        flex-direction: column;
+    }
+}
+
 
 /*--------------------------------------------------------------
 

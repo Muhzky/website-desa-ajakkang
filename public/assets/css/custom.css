@@ -126,7 +126,6 @@
     --bs-gutter-y: 2rem;
 }
 
-
 /* ===================================
    STRUKTUR ORGANISASI SECTION
    =================================== */
@@ -169,7 +168,7 @@
 }
 
 .struktur-item {
-    width: 220px; /* Sedikit dikurangi agar sesuai dengan foto 180px + padding */
+    width: 220px;
     height: auto;
     text-align: center;
     padding: 16px 12px;
@@ -177,10 +176,10 @@
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
-    min-height: 300px; /* Sesuaikan agar tidak terlalu tinggi */
+    min-height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Ubah agar konten tidak terlalu ke tengah secara vertikal */
     align-items: center;
 }
 
@@ -191,18 +190,28 @@
 
 .struktur-header {
     margin-bottom: 16px;
-    width: 180px; /* Optional: agar container foto konsisten */
+    width: 180px;
     height: auto;
+    flex-shrink: 0; /* Mencegah gambar mengecil */
 }
 
 .struktur-header img {
     width: 180px;
-    height: auto; /* Biarkan tinggi menyesuaikan aspect ratio */
-    border-radius: 10px; /* Opsional: sedikit lebih smooth */
+    height: auto;
+    border-radius: 10px;
     object-fit: cover;
     display: block;
     margin: 0 auto;
-    background-color: #f1f3f5; /* Background fallback jika gambar gagal load */
+    background-color: #f1f3f5;
+}
+
+.struktur-body {
+    text-align: center;
+    width: 100%;
+    flex-grow: 1; /* Biarkan body area mengisi sisa ruang */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Pusatkan teks secara vertikal di dalam body */
 }
 
 .struktur-body h5 {
@@ -243,55 +252,74 @@
     font-weight: bold;
 }
 
+/* --- PERBAIKAN TAMPILAN MOBILE --- */
 @media (min-width: 320px) and (max-width: 767px) {
+    /* Berikan sedikit padding pada slider agar kartu tidak menempel tepi layar */
+    .struktur-slider {
+        padding: 10px 16px;
+    }
+
+    /* Pastikan slide berada di tengah */
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+    }
+
     .struktur-item {
-        width: 280px;
-        height: 320px;
-        margin: 0 auto;
-        padding: 0; /* Memastikan kartu berada di tengah */
+        width: 320px;           /* Lebar kartu yang ideal untuk mobile */
+        max-width: 92vw;       /* Mencegah kartu terlalu besar di layar sangat kecil */
+        height: auto;          /* Biarkan tinggi menyesuaikan konten */
+        padding: 14px 14px;    /* Padding yang nyaman */
+        margin: 0 auto;        /* Pusatkan kartu */
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     .struktur-header {
-        width: 140px;
-        height: auto; /* Margin bawah untuk jarak dengan teks */
-        display: flex;
-        justify-content: center; /* Pusatkan gambar secara horizontal */
-        align-items: center; /* Pusatkan gambar secara vertikal */
-        overflow: hidden;
-        padding: 0;
-    }
+    width: 140px;
+    height: 200px;          /* fallback untuk aspect-ratio */
+    aspect-ratio: 1 / 1;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #f1f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .struktur-header img {
-        width: 100%;
-        height: 100%;
-        margin: 10px;
-        padding: 0;
-        object-fit: cover;
-        border-radius: 8px;
-        display: block; /* Hilangkan spasi bawah gambar */
-    }
-
-       .struktur-body {
+.struktur-header img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+    .struktur-body {
         text-align: center;
-        padding: 12px 8px 0; /* Padding atas untuk jarak dari foto */
-        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
     }
 
     .struktur-body h5 {
-        font-size: 14px;
-        margin-bottom: 6px; /* Jarak antara nama dan jabatan */
+        font-size: 16px; /* Ukuran font yang masih mudah dibaca */
+        margin-bottom: 4px;
+        line-height: 1.2;
     }
 
     .struktur-body span {
-        font-size: 12px; /* Ukuran font jabatan diperkecil */
-    }
-
-    .swiper-slide {
-        display: flex;
-        justify-content: center; /* Pusatkan slide secara horizontal */
+        font-size: 13px;
+        color: #6c757d;
     }
 }
-
 
 /* ===================================
    CONTACT SECTION

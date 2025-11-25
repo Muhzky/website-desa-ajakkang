@@ -69,8 +69,8 @@
           <span>2025. All Rights Reserved.</span>
         </p>
         <p class="mt-1 small">
-          Dikembangkan oleh <a href="https://www.instagram.com/" target="_blank" class="text-decoration-none">KKN Tematik
-            Universitas Dipa Makassar 2025 x KKN Reguler UNM 2025</a>
+          Dikembangkan oleh <a href="https://www.instagram.com/kknt.undipa_desajakkang25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-decoration-none">KKN Tematik
+            Universitas Dipa Makassar 2025</a>
         </p>
       </div>
     </div>

@@ -14,6 +14,31 @@ class StrukturController extends Controller
         return view('pages.struktur.pemerintahdesa');
     }
 
+     public function bpd()
+    {
+        return view('pages.struktur.bpd');
+    }
+
+      public function pkk()
+    {
+        return view('pages.struktur.pkk');
+    }
+
+       public function lpm()
+    {
+        return view('pages.struktur.lpm');
+    }
+
+           public function karangTaruna()
+    {
+        return view('pages.struktur.karang-taruna');
+    }
+
+              public function posyandu()
+    {
+        return view('pages.struktur.posyandu');
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

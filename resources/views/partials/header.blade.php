@@ -22,7 +22,7 @@
                     <a href=""><span>Transparansi</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="{{ route('pages.transparansi.anggaran') }}">Transparansi Anggaran</a></li>
-                        <li><a href="#">Laporan Kegiatan</a></li>
+                        <li><a href="{{ route('pages.transparansi.laporan-kegiatan') }}">Laporan Kegiatan</a></li>
                         <li><a href="#">Dokumen Perencanaan</a></li>
                         <li><a href="#">Bumdesa dan Kopdes MP</a></li>
                     </ul>
@@ -32,11 +32,11 @@
                     <a href=""><span>Struktur</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="{{ route('pages.struktur.pemerintahdesa') }}">Pemerintah Desa</a></li>
-                        <li><a href="#">BPD</a></li>
-                        <li><a href="#">PKK</a></li>
-                        <li><a href="#">LPM</a></li>
-                        <li><a href="#">Karang Taruna</a></li>
-                        <li><a href="#">Posyandu</a></li>
+                        <li><a href="{{ route('pages.struktur.bpd') }}">BPD</a></li>
+                        <li><a href="{{ route('pages.struktur.pkk') }}">PKK</a></li>
+                        <li><a href="{{ route('pages.struktur.lpm') }}">LPM</a></li>
+                        <li><a href="{{ route('pages.struktur.karang-taruna') }}">Karang Taruna</a></li>
+                        <li><a href="{{ route('pages.struktur.posyandu') }}">Posyandu</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('pages.layanan.pengaduan') }}">Pengaduan</a></li>

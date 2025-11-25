@@ -349,7 +349,7 @@
         <div class="swiper-slide">
           <div class="struktur-item">
             <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.png') }}" alt="Kepala Desa" loading="lazy">
+              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Kepala Desa" loading="lazy">
             </div>
             <div class="struktur-body">
               <h5>Bapak Agus Santoso</h5>
@@ -362,7 +362,7 @@
         <div class="swiper-slide">
           <div class="struktur-item">
             <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.png') }}" alt="Sekretaris Desa" loading="lazy">
+              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Sekretaris Desa" loading="lazy">
             </div>
             <div class="struktur-body">
               <h5>Ibu Siti Aminah</h5>
@@ -375,7 +375,7 @@
         <div class="swiper-slide">
           <div class="struktur-item">
             <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.png') }}" alt="Kaur Keuangan" loading="lazy">
+              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Kaur Keuangan" loading="lazy">
             </div>
             <div class="struktur-body">
               <h5>Bapak Budi Hartono</h5>
@@ -388,7 +388,7 @@
         <div class="swiper-slide">
           <div class="struktur-item">
             <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.png') }}" alt="Kaur Umum" loading="lazy">
+              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Kaur Umum" loading="lazy">
             </div>
             <div class="struktur-body">
               <h5>Ibu Rina Wati</h5>
@@ -518,7 +518,7 @@
         <div class="swiper-slide">
           <div class="struktur-item">
             <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-f-12.webp') }}" alt="Staf Kesejahteraan" loading="lazy">
+              <img src="{{ asset('assets/img/person/') }}" alt="Staf Kesejahteraan" loading="lazy">
             </div>
             <div class="struktur-body">
               <h5>Ibu Riri Andini</h5>
