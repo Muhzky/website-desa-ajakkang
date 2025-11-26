@@ -184,10 +184,11 @@ h6 {
 .counter {
     transition: color 0.3s;
     font-weight: 600;
-  }
-  .counter.animate {
-    color: #0dfd3d; 
-  }
+}
+
+.counter.animate {
+    color: #0dfd3d;
+}
 
 
 
@@ -248,7 +249,7 @@ h6 {
     font-size: 14px;
     margin-left: 10px;
     letter-spacing: 1px;
-    color: var(--accent-color    );
+    color: var(--accent-color);
 }
 
 /* Tombol Layanan Desa (hijau solid) */
@@ -262,7 +263,7 @@ h6 {
 /* Tombol Nonton Keindahan Desa (hijau outline) */
 .btn-outline-primary {
     color: #1e8737;
-    background-color: rgba(255, 255, 255); 
+    background-color: rgba(255, 255, 255);
     /* Warna teks hijau */
     border-color: #1e8737;
     /* Warna border hijau */
@@ -400,6 +401,24 @@ h6 {
         left: -100%;
         visibility: visible;
     }
+
+    .btn-login-green:hover {
+        background-color: #28a745;
+        color: white !important;
+    }
+
+    .navmenu .login-item a {
+        border: 2px solid #28a745;
+        justify-items: center;
+        padding: 2px 12px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .login-item:hover {
+        background-color: #28a745;
+        color: white !important;
+    }
 }
 
 /* Navmenu - Mobile */
@@ -526,6 +545,27 @@ h6 {
 
     .mobile-nav-active .navmenu>ul {
         display: block;
+    }
+
+    .navmenu .mobile-login-item a {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        text-align: center;
+        border: 2px solid #28a745 !important;
+        justify-items: center;
+        margin: 0 20px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-login-item a:hover {
+        display: flex;
+        border: 2px;
+        background-color: #28a745 !important;
+        color: white !important;
+        margin: 0 20px;
+        border-radius: 4px;
     }
 }
 
@@ -906,116 +946,133 @@ section,
 # Welcome Section
 --------------------------------------------------------------*/
 .welcome {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  padding: 120px 0 80px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding: 120px 0 80px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .welcome img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
 
 .welcome:before {
-  content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 45%);
-  position: absolute;
-  inset: 0;
-  z-index: 2;
+    content: "";
+    background: color-mix(in srgb, var(--background-color), transparent 45%);
+    position: absolute;
+    inset: 0;
+    z-index: 2;
 }
 
 .welcome .container {
-  position: relative;
-  z-index: 3;
+    position: relative;
+    z-index: 3;
 }
 
 .welcome h2 {
-  margin: 0;
-  font-size: 53px;
-  font-weight: 700;
-  font-family: var(--nav-font);
+    margin: 0;
+    font-size: 53px;
+    font-weight: 700;
+    font-family: var(--nav-font);
 }
 
 .welcome h2 span {
-  color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .welcome p {
-  margin: 10px 0 0 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-size: 15px;
-  font-family: poppins, sans-serif;
-  font-weight: 700;
-  color: color-mix(in srgb, var(--heading-color));
-  background-color: var(--contrast-color);
-  border-radius: 20px;
+    margin: 10px 0 0 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-family: poppins, sans-serif;
+    font-weight: 700;
+    color: color-mix(in srgb, var(--heading-color));
+    background-color: var(--contrast-color);
+    border-radius: 20px;
 }
 
 /* Gaya umum untuk judul */
 .welcome-title,
 .welcome-subtitle {
-  margin: 0;
-  font-weight: 700;
-  font-family: var(--nav-font);
-   /* Sesuaikan dengan latar belakang */
+    margin: 0;
+    font-weight: 700;
+    font-family: var(--nav-font);
+    /* Sesuaikan dengan latar belakang */
 }
 
 .welcome-title {
-  font-size: 2.8rem; /* ~45px */
+    font-size: 2.8rem;
+    /* ~45px */
 }
 
 .welcome-subtitle {
-  font-size: 2.2rem; /* ~35px */
-  margin-top: 0.5rem;
+    font-size: 2.2rem;
+    /* ~35px */
+    margin-top: 0.5rem;
 }
 
 /* Kursor berkedip di akhir teks */
 #typing-text::after {
-  content: "|";
-  animation: blink 1s infinite;
-  color: var(--accent-color);
-  margin-left: 4px;
+    content: "|";
+    animation: blink 1s infinite;
+    color: var(--accent-color);
+    margin-left: 4px;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 /* Responsif untuk mobile */
 @media (max-width: 991.98px) {
-  .welcome h2 {
-    font-size: 2.5rem; /* ~40px */
-  }
-  .welcome p {
-    font-size: 16px;
-  }
+    .welcome h2 {
+        font-size: 2.5rem;
+        /* ~40px */
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
 }
+
 @media (min-width: 320px) and (max-width: 767px) {
     .welcome-title {
-        font-size: 2.5rem; /* ~32px */
+        font-size: 2.5rem;
+        /* ~32px */
     }
+
     .welcome-subtitle {
-        font-size: 2rem; /* ~26px */
+        font-size: 2rem;
+        /* ~26px */
     }
+
     .welcome h2 {
         font-size: 32px;
     }
+
     .welcome p {
         font-size: 12px;
     }
 
-     .btn {
+    .btn {
         font-size: 12px;
         padding: 8px 18px;
     }
@@ -1028,135 +1085,141 @@ section,
 --------------------------------------------------------------*/
 
 .sambutan {
-  background-color: #f9f9f9;
-  position: relative;
+    background-color: #f9f9f9;
+    position: relative;
 }
 
 /* Section Title */
 .sambutan .text-center h2 {
-  font-size: 2.25rem; /* ~36px */
-  font-weight: 700;
-  color: #2c3e50;
-  margin-bottom: 0.1rem;
+    font-size: 2.25rem;
+    /* ~36px */
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.1rem;
 }
 
 .sambutan .text-center .d-inline-block {
-  font-size: 0.875rem;
-  letter-spacing: 0.5px;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
 }
 
 /* Accent divider */
-.sambutan .text-center > div[style*="gradient"] {
-  height: 3px;
-  border-radius: 2px;
+.sambutan .text-center>div[style*="gradient"] {
+    height: 3px;
+    border-radius: 2px;
 }
 
 /* Konten Sambutan */
 .sambutan .content p,
 .sambutan .content .fst-italic {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #555;
-  text-align: justify;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #555;
+    text-align: justify;
 }
 
 .sambutan .content .fst-italic {
-  font-style: italic;
-  color: #495057;
+    font-style: italic;
+    color: #495057;
 }
 
 /* Foto Profil */
 .sambutan .rounded-circle {
-  object-fit: cover;
-  border: 6px solid #fff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+    border: 6px solid #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .sambutan h5 {
-  font-weight: 700;
-  color: #2c3e50;
+    font-weight: 700;
+    color: #2c3e50;
 }
 
 .sambutan .text-muted {
-  color: #6c757d !important;
+    color: #6c757d !important;
 }
 
 /* Accordion - Visi & Misi */
 .sambutan .accordion-button {
-  font-weight: 600;
-  color: #2c3e50;
-  background-color: #fff;
-  border: 1px solid #e9ecef;
-  transition: all 0.25s ease;
+    font-weight: 600;
+    color: #2c3e50;
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    transition: all 0.25s ease;
 }
 
 .sambutan .accordion-button:not(.collapsed) {
-  background-color: #f8f9fa;
-  color: #0d6efd;
-  box-shadow: none;
+    background-color: #f8f9fa;
+    color: #0d6efd;
+    box-shadow: none;
 }
 
 .sambutan .accordion-button:focus {
-  box-shadow: none;
-  outline: none;
-  border-color: #28a745;
+    box-shadow: none;
+    outline: none;
+    border-color: #28a745;
 }
 
 .sambutan .accordion-body {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #495057;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
 }
 
 .sambutan .accordion-body ol {
-  padding-left: 1.5rem;
+    padding-left: 1.5rem;
 }
 
 .sambutan .accordion-body ol li {
-  margin-bottom: 0.4rem;
+    margin-bottom: 0.4rem;
 }
 
 /* Ikon Bootstrap */
 .sambutan .bi {
-  font-size: 1.1rem;
-  vertical-align: -0.15rem;
+    font-size: 1.1rem;
+    vertical-align: -0.15rem;
 }
 
 /* Responsif */
 @media (max-width: 991.98px) {
-  .sambutan .content {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
+    .sambutan .content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 
-  .sambutan .text-center .position-relative {
-    margin-top: 1rem;
-  }
+    .sambutan .text-center .position-relative {
+        margin-top: 1rem;
+    }
 
-  .sambutan .rounded-circle {
-    width: 220px !important;
-    height: 220px !important;
-  }
+    .sambutan .rounded-circle {
+        width: 220px !important;
+        height: 220px !important;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
     .sambutan .text-center h2 {
-        font-size: 1.875rem; /* ~30px */
+        font-size: 1.875rem;
+        /* ~30px */
     }
+
     .sambutan .rounded-circle {
         width: 180px !important;
         height: 180px !important;
     }
+
     .sambutan .content p,
     .sambutan .content .fst-italic {
         font-size: 1rem;
         padding: 0 15px;
         text-align: justify;
     }
+
     .sambutan .accordion-button {
         font-size: 1rem;
         padding: 12px 15px;
     }
+
     .sambutan .accordion-body {
         font-size: 0.95rem;
         padding: 15px;
@@ -1362,10 +1425,12 @@ section,
     .about .content h2 {
         font-size: 32px;
     }
+
     .about .stats-row {
         flex-direction: column;
         gap: 30px;
     }
+
     .about .cta-section {
         flex-direction: column;
     }
@@ -4535,28 +4600,33 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
- .light-background {
-      background-color: #f8f9fa;
-      padding: 60px 0;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .map-container, .form-wrapper {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .submit-btn {
-      background-color: #0d6efd;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .submit-btn:hover {
-      background-color: #0b5ed7;
-    }
+.light-background {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.map-container,
+.form-wrapper {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0b5ed7;
+}

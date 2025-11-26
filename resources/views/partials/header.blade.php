@@ -24,7 +24,7 @@
                         <li><a href="{{ route('pages.transparansi.anggaran') }}">Transparansi Anggaran</a></li>
                         <li><a href="{{ route('pages.transparansi.laporan-kegiatan') }}">Laporan Kegiatan</a></li>
                         <li><a href="{{ route('pages.transparansi.perencanaan') }}">Dokumen Perencanaan</a></li>
-                        <li><a href="#">Bumdesa dan Kopdes MP</a></li>
+                        <li><a href="{{ route('pages.transparansi.bumdesa') }}">Bumdesa dan Kopdes MP</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('pages.berita.index') }}">Berita</a></li>
@@ -43,7 +43,13 @@
                 <li>
                     <a href="{{ Request::is('/') ? '#contact' : url('/#contact') }}">Kontak</a>
                 </li>
-                <li><a href="{{ route('filament.admin.auth.login') }}" class="btn-login">Login</a></li>
+                <li class="mobile-login-item">
+                    <a href="{{ route('filament.admin.auth.login') }}"
+                        class="login-item"
+                        style="border: 2px solid #28a745; color: #28a745; padding: 2px 12px; border-radius: 4px; text-decoration: none;">
+                        Login
+                    </a>
+                </li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

@@ -55,6 +55,11 @@ Route::get('/layanan/layanan-pengaduan', function () {
     return view('pages.layanan.pengaduan');
 })->name('pages.layanan.pengaduan');
 
+//layanan posyandu
+Route::get('/layanan/layanan-posyandu', function () {
+    return view('pages.layanan.posyandu');
+})->name('pages.layanan.posyandu');
+
 
 /*
 | Transparansi (group)

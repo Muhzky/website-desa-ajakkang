@@ -308,7 +308,7 @@
                 <span class="title-with-underline">Pelayanan Kesehatan dan Posyandu</span>
               </h3>
               <p>Layanan pemeriksaan gratis dan jadwal posyandu.</p>
-              <a href="#" class="read-more">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
+              <a href="{{ route('pages.layanan.posyandu') }}" class="read-more">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div><!-- End Feature Item -->
