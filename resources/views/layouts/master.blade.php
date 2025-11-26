@@ -9,7 +9,7 @@
   <meta name="keywords" content="@yield('meta_keywords', 'desa ajakkang, barru, sulawesi selatan')">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/logo/logo-barru.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/Logo-Desa-Ajakkang.png') }}" rel="icon">
   <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Fonts -->

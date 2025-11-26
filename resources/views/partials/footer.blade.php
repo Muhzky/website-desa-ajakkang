@@ -2,7 +2,7 @@
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-2 col-md-4 col-sm-6 text-center text-md-start footer-about">
-          <img src="/assets/img/logo/logo-barru.png" alt="" width="140" class="img-fluid mx-auto mx-md-0">
+          <img src="{{ asset('assets/img/Logo-Desa-Ajakkang.png') }}" alt="" width="160" class="img-fluid mx-auto mx-md-0">
         </div>
 
         <div class="col-lg-3 col-md-8 col-sm-12 text-center text-md-start footer-about">
@@ -58,21 +58,38 @@
       </div>
     </div>
 
-    <!-- Copyright -->
-     <!-- Copyright Full Width -->
-  <div class="copyright-full">
-    <div class="container">
-      <div class="text-center">
+ <!-- Copyright Full Width -->
+<div class="copyright-full">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 text-center">
+      
+      <!-- Logo berdempetan -->
+      <div class="d-flex gap-3">
+        <a href="https://kemendesa.go.id" target="_blank">
+          <img src="{{ asset('assets/img/LogoUndipa.png') }}" alt="Logo Universitas Dipa" width="48" class="img-fluid">
+        </a>
+        <a href="https://sulselprov.go.id" target="_blank">
+          <img src="{{ asset('assets/img/KKNT-DESA-AJAKKANG.png') }}" alt="Logo KKN Desa Ajakkang" width="50" class="img-fluid">
+        </a>
+      </div>
+
+      <!-- Teks copyright -->
+      <div>
         <p class="mb-0">
           &copy; <span>Copyright </span>
           <strong class="px-1 sitename">Desa Ajakkang</strong>
           <span>2025. All Rights Reserved.</span>
         </p>
-        <p class="mt-1 small">
-          Dikembangkan oleh <a href="https://www.instagram.com/kknt.undipa_desajakkang25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-decoration-none">KKN Tematik
-            Universitas Dipa Makassar 2025</a>
+        <p class="mt-1 small mb-0">
+          Dikembangkan oleh 
+          <a href="https://www.instagram.com/kknt.undipa_desajakkang25?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+             target="_blank" class="text-decoration-none">
+            KKN Tematik Universitas Dipa Makassar 2025
+          </a>
         </p>
       </div>
+
     </div>
   </div>
+</div>
   </footer>

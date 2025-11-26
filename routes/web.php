@@ -60,6 +60,11 @@ Route::get('/layanan/layanan-posyandu', function () {
     return view('pages.layanan.posyandu');
 })->name('pages.layanan.posyandu');
 
+//layanan kesra
+Route::get('/layanan/layanan-kesra', function () {
+    return view('pages.layanan.kesra');
+})->name('pages.layanan.kesra');
+
 
 /*
 | Transparansi (group)

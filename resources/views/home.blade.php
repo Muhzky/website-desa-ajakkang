@@ -292,7 +292,7 @@
                 <span class="title-with-underline">Bagian Kesra</span>
               </h3>
               <p>Informasi dan pengajuan bantuan seperti BLT dan PKH.</p>
-              <a href="#" class="read-more">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
+              <a href="{{ route('pages.layanan.kesra') }}" class="read-more">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div><!-- End Feature Item -->

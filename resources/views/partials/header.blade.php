@@ -2,7 +2,7 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/logo/logo-barru.png') }}" alt="Logo" width="50" height="auto" class="me-2">
+                <img src="{{ asset('assets/img/Logo-Desa-Ajakkang.png') }}" alt="Logo" width="60" height="auto" class="me-2">
             </a>
             <div class="text">
                 <h3 class="title-desa sitename mb-0 fw-bold">
