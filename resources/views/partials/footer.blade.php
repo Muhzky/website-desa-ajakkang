@@ -37,9 +37,9 @@
           <h4>Layanan Kami</h4>
           <ul>
             <li><a href="{{ route('pages.layanan.pemdes') }}">Bagian Pemerintahan</a></li>
-            <li><a href="#">Bagian Pelayanan</a></li>
-            <li><a href="#">Layanan Kesra</a></li>
-            <li><a href="#">Pelayanan Kesehatan &amp; Posyandu</a></li>
+            <li><a href="{{ route('pages.layanan.pelayanan') }}">Bagian Pelayanan</a></li>
+            <li><a href="{{ route('pages.layanan.kesra') }}">Layanan Kesra</a></li>
+            <li><a href="{{ route('pages.layanan.posyandu') }}">Pelayanan Kesehatan &amp; Posyandu</a></li>
           </ul>
         </div>
 
@@ -65,10 +65,10 @@
       
       <!-- Logo berdempetan -->
       <div class="d-flex gap-3">
-        <a href="https://kemendesa.go.id" target="_blank">
+        <a>
           <img src="{{ asset('assets/img/LogoUndipa.png') }}" alt="Logo Universitas Dipa" width="48" class="img-fluid">
         </a>
-        <a href="https://sulselprov.go.id" target="_blank">
+        <a>
           <img src="{{ asset('assets/img/KKNT-DESA-AJAKKANG.png') }}" alt="Logo KKN Desa Ajakkang" width="50" class="img-fluid">
         </a>
       </div>

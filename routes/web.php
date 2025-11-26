@@ -65,6 +65,11 @@ Route::get('/layanan/layanan-kesra', function () {
     return view('pages.layanan.kesra');
 })->name('pages.layanan.kesra');
 
+//layanan kesra
+Route::get('/layanan/layanan-pelayanan', function () {
+    return view('pages.layanan.pelayanan');
+})->name('pages.layanan.pelayanan');
+
 
 /*
 | Transparansi (group)

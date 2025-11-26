@@ -1,14 +1,15 @@
 @extends('layouts.master')
-@section('title', 'Laporan Kegiatan - Desa Ajakkang')
-@section('meta_description', 'Laporan kegiatan Desa Ajakkang, Kecamatan Soppeng Riaja, Kabupaten Barru')
+@section('title', 'Laporan Kegiatan - Desa Batupute')
+@section('meta_description', 'Laporan kegiatan Desa Batupute, Kecamatan Soppeng Riaja, Kabupaten Barru')
 @section('page-title')
     @component('components.page-title')
         @slot('title', 'Laporan Kegiatan')
-        @slot('description', 'Halaman ini menyajikan informasi lengkap mengenai laporan kegiatan yang dilakukan oleh pemerintah Desa Ajakkang.')
+        @slot('description', 'Halaman ini menyajikan informasi lengkap mengenai laporan kegiatan yang dilakukan oleh pemerintah Desa Batupute.')
         @slot('parent', 'Transparansi')
         @slot('parentUrl', Request::is('/') ? '' : url(''))
     @endcomponent
 @endsection
+
 @section('content')
 <!-- Laporan Kegiatan Section -->
 <section id="laporan-kegiatan" class="laporan-kegiatan section">
@@ -22,12 +23,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                     </div>
                     <div class="modal-body p-0 position-relative" style="min-height: 60vh;">
-                        <div id="loadingIndicator" class="d-flex justify-content-center align-items-center position-absolute w-100 h-100" style="background: rgba(248, 249, 250, 0.8); z-index: 10; display: none;">
+                        <div id="loadingIndicator" class="d-flex justify-content-center align-items-center position-absolute w-100 h-100" style="background: rgba(255, 255, 255, 0.9); z-index: 10; display: none;">
                             <div class="text-center">
                                 <div class="spinner-border text-primary" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
-                                <p class="mt-2 mb-0">Memuat dokumen...</p>
+                                <p class="mt-2 mb-0 text-muted">Memuat dokumen...</p>
                             </div>
                         </div>
                         <iframe
@@ -36,8 +37,8 @@
                             style="width:100%; height: 100%; min-height: 60vh; border: none;"
                             frameborder="0"
                             onload="hideLoading()"
-                            onerror="showError()"
-                        ></iframe>
+                            onerror="showError()">
+                        </iframe>
                     </div>
                     <div class="modal-footer justify-content-center border-0 pt-2">
                         <small class="text-muted">Pastikan browser mendukung tampilan PDF.</small>
@@ -46,47 +47,99 @@
             </div>
         </div>
 
-        <!-- === Daftar Laporan Kegiatan === -->
-        <div class="row">
-            <div class="col-12">
-                <h4 class="subsection-title">Daftar Laporan Kegiatan</h4>
-                <p class="text-muted mb-4">Berikut ini adalah data-data mengenai laporan kegiatan yang dilakukan oleh pemerintah Desa Ajakkang.</p>
-
-                @forelse($laporanKegiatan ?? [] as $item)
-                <div class="kegiatan-item">
-                    <div class="kegiatan-icon">
-                        <i class="bi bi-file-earmark-text"></i>
-                    </div>
-                    <div class="kegiatan-details">
-                        <h5>{{ $item->nama_kegiatan ?? 'Kegiatan Desa' }}</h5>
-                        <div class="kegiatan-meta">
-                            <span><i class="bi bi-geo-alt"></i> {{ $item->lokasi ?? 'Desa Ajakkang' }}</span>
-                            <span><i class="bi bi-cash-stack"></i> {{ isset($item->anggaran) ? 'Rp ' . number_format($item->anggaran, 0, ',', '.') : 'Rp 0' }}</span>
-                            <span><i class="bi bi-calendar"></i> {{ isset($item->tanggal) ? \Carbon\Carbon::parse($item->tanggal)->isoFormat('DD MMMM YYYY') : '01 Januari 2025' }}</span>
+        <!-- Daftar Laporan Kegiatan -->
+        <div class="row justify-content-center">
+            <!-- Kegiatan 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <article class="card card-custom h-100" data-aos="fade-up">
+                    <a href="" class="glightbox card-image-wrap">
+                        <img src="{{ asset('assets/img/ibu-anak.png') }}" alt="Foto Kegiatan" loading="lazy" class="card-img-top">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">Penanganan Stunting (PMT IBU HAMIL KEK HARI KE 11-HARI KE 20)</h4>
+                        <div class="post-meta mb-3 mt-2">
+                            <p class="mb-1"><i class="bi bi-geo-alt-fill me-1"></i><strong>Lokasi:</strong> Desa Batupute</p>
+                            <p class="mb-1"><i class="bi bi-cash-stack me-1"></i><strong>Anggaran:</strong> Rp. 500.000</p>
+                            <p class="mb-0"><i class="bi bi-calendar-event me-1"></i><strong>Tanggal:</strong> 04 November 2025</p>
+                        </div>
+                        <div class="mt-auto d-flex gap-2">
+                            <a href="javascript:void(0);" class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center flex-fill" onclick="openModal('1762323935_DAFTAR_NAMA_SASARAN_IBU_HAMIL_KEK.xlsx')">
+                                <i class="bi bi-file-earmark-fill me-1"></i> Lihat
+                            </a>
+                            <a href="https://website.desa-batupute.com/transparansi/laporan-kegiatan/download/1762323935_DAFTAR_NAMA_SASARAN_IBU_HAMIL_KEK.xlsx" class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center flex-fill">
+                                <i class="bi bi-download me-1"></i> Unduh
+                            </a>
                         </div>
                     </div>
-                    <div class="kegiatan-actions">
-                        <a href="javascript:void(0);" onclick="openModal('{{ $item->file ?? '' }}')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-eye"></i> Lihat Berkas
-                        </a>
-                        <a href="{{ route('laporan-kegiatan.download', $item->file ?? '') }}" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download"></i> Download Berkas
-                        </a>
-                    </div>
-                </div>
-                @empty
-                <div class="alert alert-info">
-                    <i class="bi bi-info-circle me-2"></i>
-                    Belum ada data laporan kegiatan.
-                </div>
-                @endforelse
+                </article>
+            </div>
 
-                <!-- Pagination -->
-                @if(isset($laporanKegiatan) && $laporanKegiatan->hasPages())
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $laporanKegiatan->links('pagination::bootstrap-5') }}
-                </div>
-                @endif
+            <!-- Kegiatan 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <article class="card card-custom h-100" data-aos="fade-up">
+                    <a href="" class="glightbox card-image-wrap">
+                        <img src="{{ asset('assets/img/makanan-stunting.png') }}" alt="Foto Kegiatan" loading="lazy" class="card-img-top">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">Penanganan Stunting/ PMT Sasaran Stunting, Gizi Kurang, BB K</h4>
+                        <div class="post-meta mb-3 mt-2">
+                            <p class="mb-1"><i class="bi bi-geo-alt-fill me-1"></i><strong>Lokasi:</strong> Desa Batupute</p>
+                            <p class="mb-1"><i class="bi bi-cash-stack me-1"></i><strong>Anggaran:</strong> Rp. 12.300.000</p>
+                            <p class="mb-0"><i class="bi bi-calendar-event me-1"></i><strong>Tanggal:</strong> 04 November 2025</p>
+                        </div>
+                        <div class="mt-auto d-flex gap-2">
+                            <a href="javascript:void(0);" class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center flex-fill" onclick="openModal('1762324227_DAFTAR_NAMA_SASARAN_DAN_DAFTAR_TERIMA_TRANSPORT.xlsx')">
+                                <i class="bi bi-file-earmark-fill me-1"></i> Lihat
+                            </a>
+                            <a href="https://website.desa-batupute.com/transparansi/laporan-kegiatan/download/1762324227_DAFTAR_NAMA_SASARAN_DAN_DAFTAR_TERIMA_TRANSPORT.xlsx" class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center flex-fill">
+                                <i class="bi bi-download me-1"></i> Unduh
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Kegiatan 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <article class="card card-custom h-100" data-aos="fade-up">
+                    <a href="" class="glightbox card-image-wrap">
+                        <img src="{{ asset('assets/img/pengajian.png') }}" alt="Foto Kegiatan" loading="lazy" class="card-img-top">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">PENGAJIAN RUTIN</h4>
+                        <div class="post-meta mb-3 mt-2">
+                            <p class="mb-1"><i class="bi bi-geo-alt-fill me-1"></i><strong>Lokasi:</strong> Masid Nurul Huda Dusun Ujunge</p>
+                            <p class="mb-1"><i class="bi bi-cash-stack me-1"></i><strong>Anggaran:</strong> Rp. 3.600.000</p>
+                            <p class="mb-0"><i class="bi bi-calendar-event me-1"></i><strong>Tanggal:</strong> 31 Oktober 2025</p>
+                        </div>
+                        <div class="mt-auto d-flex gap-2">
+                            <a href="javascript:void(0);" class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center flex-fill" onclick="openModal('1762325520_CamScanner_05-11-2025_14.49.pdf')">
+                                <i class="bi bi-file-earmark-fill me-1"></i> Lihat
+                            </a>
+                            <a href="https://website.desa-batupute.com/transparansi/laporan-kegiatan/download/1762325520_CamScanner_05-11-2025_14.49.pdf" class="btn btn-outline-primary btn-sm d-flex align-items-center justify-content-center flex-fill">
+                                <i class="bi bi-download me-1"></i> Unduh
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="col-12 col-lg-10 mt-5">
+            <div class="d-flex justify-content-center">
+                <ul class="pagination pagination-sm">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="/transparansi/laporan-kegiatan?page=1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="/transparansi/laporan-kegiatan?page=2">2</a></li>
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                    <li class="page-item"><a class="page-link" href="/transparansi/laporan-kegiatan?page=8">8</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="/transparansi/laporan-kegiatan?page=2"><i class="bi bi-chevron-right"></i></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -97,18 +150,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
     :root {
-        --primary-color: #000000ff;
+        --primary-color: #000000;
+        --primary-light: #333333;
+        --secondary-color: #6c757d;
         --success-color: #198754;
         --danger-color: #dc3545;
-        --secondary-color: #6c757d;
+        --info-color: #198754;
         --light-bg: #f8f9fa;
-        --white: #ffffff;
-        --dark-text: #212529;
-        --muted-text: #6c757d;
-        --border-color: #dee2e6;
-        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        --card-hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        --transition: all 0.3s ease;
+        --border-color: #e9ecef;
+        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --transition: all 0.25s ease;
     }
     body {
         font-family: 'Poppins', sans-serif;
@@ -116,84 +168,73 @@
     .section {
         padding-bottom: 5rem;
     }
-    .section-title {
-        font-weight: 600;
-        color: var(--dark-text);
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-    }
-    .section-description {
-        color: var(--muted-text);
-        font-size: 1rem;
-    }
-    .subsection-title {
-        font-weight: 600;
-        color: var(--dark-text);
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
-        padding-left: 1rem;
-        border-left: 4px solid var(--primary-color);
-    }
-    .text-muted{
-      font-size: 1.1rem;
-      padding-left: 1.3rem;
-    }
-
-    /* Kartu Kegiatan */
-    .kegiatan-item {
-        display: flex;
-        align-items: center;
-        background: var(--white);
-        padding: 1.5rem 2rem;
-        border-radius: 12px;
-        margin-bottom: 1rem;
+    .card-custom {
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
         box-shadow: var(--card-shadow);
         transition: var(--transition);
+        background: #fff;
     }
-    .kegiatan-item:hover {
+    .card-custom:hover {
         box-shadow: var(--card-hover-shadow);
         transform: translateY(-2px);
     }
-    .kegiatan-icon {
-        font-size: 2rem;
-        color: var(--primary-color);
-        margin-right: 1.5rem;
-        flex-shrink: 0;
+    .card-custom img {
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
-    .kegiatan-details {
-        flex-grow: 1;
+    .card-body {
+        padding: 1.5rem;
     }
-    .kegiatan-details h5 {
-        margin: 0 0 0.5rem 0;
-        font-weight: 600;
-        color: var(--dark-text);
+    .card-title {
+        font-size: 1.1rem;
+        color: var(--primary-light);
     }
-    .kegiatan-meta {
+    .post-meta p {
+        margin-bottom: 0.5rem;
         font-size: 0.9rem;
         color: var(--muted-text);
     }
-    .kegiatan-meta span {
-        margin-right: 1.5rem;
+    .btn-sm {
+        font-size: 0.875rem;
+        padding: 0.4rem 0.75rem;
     }
-    .kegiatan-meta i {
-        margin-right: 0.5rem;
+    .btn-outline-secondary {
+        color: var(--secondary-color);
+        border-color: var(--border-color);
     }
-    .kegiatan-actions .btn {
-        margin-left: 0.5rem;
+    .btn-outline-secondary:hover {
+        background-color: #f1f3f5;
+        color: var(--primary-light);
     }
-
+    .btn-outline-primary {
+        color: var(--info-color);
+        border-color: var(--info-color);
+    }
+    .btn-outline-primary:hover {
+        background-color: var(--info-color);
+        color: white;
+    }
+    .pagination-sm .page-link {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    .pagination .page-item.active .page-link {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
     @media (max-width: 768px) {
-        .kegiatan-item {
+        .card-custom .btn {
+            width: 100%;
+            margin-bottom: 0.35rem;
+        }
+        .card-custom .d-flex.gap-2 {
             flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
         }
-        .kegiatan-icon {
-            margin-bottom: 1rem;
-        }
-        .kegiatan-actions {
-            margin-top: 1rem;
-            align-self: flex-end;
+        .card-custom h6 {
+            font-size: 1rem;
         }
     }
 </style>
@@ -201,11 +242,9 @@
 
 @push('scripts')
 <script>
-    (function () {
+    (function() {
         'use strict';
-
-        // Modal functions
-        window.openModal = function (filename) {
+        window.openModal = function(filename) {
             if (!filename) {
                 alert('File tidak tersedia.');
                 return;
@@ -214,20 +253,22 @@
             const frame = document.getElementById('fileFrame');
             const loading = document.getElementById('loadingIndicator');
             loading.style.display = 'flex';
-            frame.src = '/laporan-kegiatan/preview/' + encodeURIComponent(filename);
+            frame.src = '/transparansi/laporan-kegiatan/preview/' + encodeURIComponent(filename);
             modal.show();
         };
-
-        window.hideLoading = function () {
+        window.hideLoading = function() {
             const loading = document.getElementById('loadingIndicator');
             if (loading) loading.style.display = 'none';
         };
-
-        window.showError = function () {
+        window.showError = function() {
             const loading = document.getElementById('loadingIndicator');
             if (loading) {
-                loading.innerHTML = '<div class="text-center text-danger"><i class="bi bi-exclamation-triangle fs-1"></i><p class="mt-2">Gagal memuat file PDF.</p></div>';
-                loading.style.display = 'flex';
+                loading.innerHTML = `
+                    <div class="text-center text-danger">
+                        <i class="bi bi-exclamation-triangle fs-1"></i>
+                        <p class="mt-2 mb-0">Gagal memuat dokumen.</p>
+                    </div>
+                `;
             }
         };
     })();
