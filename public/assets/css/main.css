@@ -239,7 +239,6 @@ h6 {
 
 .title-desa {
     font-family: var(--nav-font);
-    margin-left: 10px;
     letter-spacing: 1px;
     color: var(--green-color);
 }
@@ -247,7 +246,6 @@ h6 {
 .subtitle-desa {
     font-family: var(--nav-font);
     font-size: 14px;
-    margin-left: 10px;
     letter-spacing: 1px;
     color: var(--accent-color);
 }
