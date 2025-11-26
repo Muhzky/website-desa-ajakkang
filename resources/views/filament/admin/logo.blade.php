@@ -1,0 +1,1 @@
+<img src="{{ asset('assets/img/Logo-Desa-Ajakkang.png') }}" alt="Logo Desa Ajakkang">
