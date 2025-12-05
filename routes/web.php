@@ -10,9 +10,6 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TransparansiController;
 use App\Http\Controllers\StrukturController;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Public Routes
