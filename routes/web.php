@@ -10,11 +10,37 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TransparansiController;
 use App\Http\Controllers\StrukturController;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Public Routes
 |--------------------------------------------------------------------------
 */
+
+Route::post('admin/login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => ['required','email'],
+        'password' => ['required'],
+    ]);
+
+    $remember = (bool) $request->boolean('remember');
+
+    $guard = config('filament.auth.guard') ?? 'web';
+
+    if (Auth::guard($guard)->attempt($credentials, $remember)) {
+        $request->session()->regenerate();
+
+        $path = config('filament.path', 'admin');
+
+        return redirect()->intended($path);
+    }
+
+    return back()
+        ->withInput($request->only('email', 'remember'))
+        ->withErrors(['email' => __('auth.failed')]);
+})->name('filament.admin.auth.login')->middleware('guest');
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
