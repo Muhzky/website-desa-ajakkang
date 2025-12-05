@@ -34,6 +34,13 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "",
+        "APP_KEY": "base64:+3iCmCtUOORarfiUqsSqlYXV8vOnyBgEYkZb0aP0tsQ=",
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "v64odr.h.filess.io",
+        "DB_PORT": "61001",
+        "DB_DATABASE": "db_desa_ajakkang_threwpool",
+        "DB_USERNAME": "db_desa_ajakkang_threwpool",
+        "DB_PASSWORD": "b8074aa873239eae24a9ca5c35106e76d862cb44",
  
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
