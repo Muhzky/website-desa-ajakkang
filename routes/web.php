@@ -19,28 +19,15 @@ use Illuminate\Support\Facades\Auth;
 |--------------------------------------------------------------------------
 */
 
-Route::post('admin/login', function (Request $request) {
-    $credentials = $request->validate([
-        'email' => ['required','email'],
-        'password' => ['required'],
-    ]);
-
-    $remember = (bool) $request->boolean('remember');
-
-    $guard = config('filament.auth.guard') ?? 'web';
-
-    if (Auth::guard($guard)->attempt($credentials, $remember)) {
+Route::post('admin/login', function (Illuminate\Http\Request $request) {
+    $credentials = $request->validate(['email'=>'required|email','password'=>'required']);
+    if (Auth::guard(config('filament.auth.guard','web'))->attempt($credentials, (bool)$request->boolean('remember'))) {
         $request->session()->regenerate();
-
-        $path = config('filament.path', 'admin');
-
-        return redirect()->intended($path);
+        return redirect()->intended(config('filament.path','admin'));
     }
+    return back()->withErrors(['email' => __('auth.failed')])->withInput($request->only('email','remember'));
+})->middleware('guest');
 
-    return back()
-        ->withInput($request->only('email', 'remember'))
-        ->withErrors(['email' => __('auth.failed')]);
-})->name('filament.admin.auth.login')->middleware('guest');
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
