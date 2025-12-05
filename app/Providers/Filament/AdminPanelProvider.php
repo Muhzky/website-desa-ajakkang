@@ -26,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->login(Login::class)
             ->brandLogo(fn() => view('filament.admin.logo'))
             ->brandLogoHeight('40px')
             ->colors([
