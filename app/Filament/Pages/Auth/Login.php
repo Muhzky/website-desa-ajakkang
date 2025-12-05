@@ -6,11 +6,6 @@ use Filament\Pages\Auth\Login as BaseLogin;
 
 class Login extends BaseLogin
 {
-    // Jika kamu ingin custom view, uncomment baris ini:
-    protected static string $view = 'filament.pages.auth.login';
-
-    public function getHeading(): string
-    {
-        return 'Admin Desa Ajakkang';
-    }
+    // cara paling stabil: set heading sebagai property
+    protected ?string $heading = 'Admin Desa Ajakkang';
 }
