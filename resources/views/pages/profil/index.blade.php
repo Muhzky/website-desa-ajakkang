@@ -15,7 +15,7 @@
 <section class="portfolio-details section">
   <div class="container" data-aos="fade-up">
     <div class="container">
-    <img class="glightbox petdes" src="{{ asset('assets/img/peta-desa-ajakkang.jpg') }}" alt="Peta Desa Ajakkang" style="width: 100%; height: auto; padding: 0 100px 0 100px;">
+    <img class="glightbox petdes" src="{{ asset('assets/img/peta-desa-ajakkang(1).jpg') }}" alt="Peta Desa Ajakkang" style="width: 100%; height: auto; padding: 0 100px 0 100px;">
 </div>
     <div class="row justify-content-between gy-4 mt-4">
       <!-- Kolom Informasi (kiri pada layar besar) -->
