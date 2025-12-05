@@ -19,14 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |--------------------------------------------------------------------------
 */
 
-Route::post('admin/login', function (Illuminate\Http\Request $request) {
-    $credentials = $request->validate(['email'=>'required|email','password'=>'required']);
-    if (Auth::guard(config('filament.auth.guard','web'))->attempt($credentials, (bool)$request->boolean('remember'))) {
-        $request->session()->regenerate();
-        return redirect()->intended(config('filament.path','admin'));
-    }
-    return back()->withErrors(['email' => __('auth.failed')])->withInput($request->only('email','remember'));
-})->middleware('guest');
+
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
