@@ -34,7 +34,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://website-desa-ajakkang.vercel.app",
-        "APP_KEY": "base64:JUcTOZajtlCwdxRZVjCdccc/WHYkCqB/XJfNjXfuAVc=",
+        "APP_KEY": "base64:bkYT5KjOyNu/Iu7k5Koirt7BzYiDCivKk8AGGQ4+HS0=",
         "DB_CONNECTION": "mysql",
         "DB_HOST": "v64odr.h.filess.io",
         "DB_PORT": "61001",
