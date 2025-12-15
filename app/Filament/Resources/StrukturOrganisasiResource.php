@@ -45,43 +45,43 @@ class StrukturOrganisasiResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-        ->schema([
-            Select::make('nama')
-                ->label('Nama Struktur')
-                ->options([
-                    'Struktur Organisasi Pemerintah Desa' => 'Struktur Organisasi Pemerintah Desa',
-                    'Struktur Organisasi BPD' => 'Struktur Organisasi BPD',
-                    'Struktur Organisasi PKK' => 'Struktur Organisasi PKK',
-                    'Struktur Organisasi LPM' => 'Struktur Organisasi LPM',
-                    'Struktur Organisasi Karang Taruna' => 'Struktur Organisasi Karang Taruna',
-                    'Struktur Organisasi Posyandu' => 'Struktur Organisasi Posyandu',
-                ])
-                ->searchable()
-                ->required(),
+            ->schema([
+                Select::make('nama')
+                    ->label('Nama Struktur')
+                    ->options([
+                        'Struktur Organisasi Pemerintah Desa' => 'Struktur Organisasi Pemerintah Desa',
+                        'Struktur Organisasi BPD' => 'Struktur Organisasi BPD',
+                        'Struktur Organisasi PKK' => 'Struktur Organisasi PKK',
+                        'Struktur Organisasi LPM' => 'Struktur Organisasi LPM',
+                        'Struktur Organisasi Karang Taruna' => 'Struktur Organisasi Karang Taruna',
+                        'Struktur Organisasi Posyandu' => 'Struktur Organisasi Posyandu',
+                    ])
+                    ->searchable()
+                    ->required(),
 
-            Select::make('slug')
-                ->label('Slug (Identitas Halaman)')
-                ->helperText('Digunakan untuk pemanggilan di halaman website')
-                ->options([
-                    'pemerintah-desa' => 'pemerintah-desa',
-                    'bpd' => 'bpd',
-                    'pkk' => 'pkk',
-                    'lpm' => 'lpm',
-                    'karang-taruna' => 'karang-taruna',
-                    'posyandu' => 'posyandu',
-                ])
-                ->required()
-                ->unique(ignoreRecord: true),
+                Select::make('slug')
+                    ->label('Slug (Identitas Halaman)')
+                    ->helperText('Digunakan untuk pemanggilan di halaman website')
+                    ->options([
+                        'pemerintah-desa' => 'pemerintah-desa',
+                        'bpd' => 'bpd',
+                        'pkk' => 'pkk',
+                        'lpm' => 'lpm',
+                        'karang-taruna' => 'karang-taruna',
+                        'posyandu' => 'posyandu',
+                    ])
+                    ->required()
+                    ->unique(ignoreRecord: true),
 
-            FileUpload::make('gambar')
-                ->label('Gambar Struktur')
-                ->image()
-                ->disk('public')
-                ->directory('struktur')
-                ->imageEditor()
-                ->maxSize(5120) // 5MB
-                ->required(),
-        ]);
+                FileUpload::make('gambar')
+                    ->label('Gambar Struktur')
+                    ->image()
+                    ->disk('public')
+                    ->directory('assets/img/struktur')
+                    ->imageEditor()
+                    ->maxSize(5120)
+                    ->required(),
+            ]);
     }
 
     public static function table(Table $table): Table
