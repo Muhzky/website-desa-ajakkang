@@ -62,7 +62,7 @@ class PemerintahDesaResource extends Resource
 
                 Forms\Components\FileUpload::make('foto')
                     ->image()
-                    ->disk('public')
+                    ->disk('supabase')
                     ->maxSize(2048)
                     ->directory('pemerintah-desa')
                     ->rules(['image', 'max:2048'])
