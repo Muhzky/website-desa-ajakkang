@@ -77,7 +77,7 @@ class StrukturOrganisasiResource extends Resource
                     ->label('Gambar Struktur')
                     ->image()
                     ->disk('public')
-                    ->directory('assets/img/struktur')
+                    ->directory('struktur')
                     ->imageEditor()
                     ->maxSize(5120)
                     ->required(),
