@@ -91,7 +91,7 @@ class DataPendudukResource extends Resource
 
                 Tables\Columns\TextColumn::make('kepala_keluarga'),
 
-                Tables\Columns\TextColumn::make('mobilitas_permanen')
+                Tables\Columns\TextColumn::make('mobilitas_penduduk')
                     ->label('Mobilitas Permanen'),
 
                 Tables\Columns\TextColumn::make('mutasi_penduduk')
