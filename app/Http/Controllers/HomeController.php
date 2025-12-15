@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataPenduduk;
 use App\Models\PemerintahDesa;
 
+
 class HomeController extends Controller
 {
     public function index()
@@ -27,5 +28,13 @@ class HomeController extends Controller
         $pemerintahDesa = PemerintahDesa::ordered()->get();
 
         return view('home', compact('data', 'pemerintahDesa'));
+    }
+
+
+    public function home()
+    {
+        $data = DataPenduduk::latest()->first();
+
+        return view('home', compact('data'));
     }
 }
