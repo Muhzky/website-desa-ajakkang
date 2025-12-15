@@ -62,7 +62,7 @@ class DataPendudukResource extends Resource
                     ->numeric()
                     ->required(),
 
-                Forms\Components\TextInput::make('mobilitas_permanen')
+                Forms\Components\TextInput::make('mobilitas_penduduk')
                     ->label('Mobilitas Permanen')
                     ->numeric()
                     ->nullable(),
