@@ -76,7 +76,7 @@ class StrukturOrganisasiResource extends Resource
                 FileUpload::make('gambar')
                     ->label('Gambar Struktur')
                     ->image()
-                    ->disk('public')
+                    ->disk('supabase')
                     ->directory('struktur')
                     ->maxSize(5120)
                     ->required(),
