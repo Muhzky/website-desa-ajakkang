@@ -18,6 +18,9 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Pages\Auth\Login;
+use Filament\Support\Facades\FilamentView;
+use Illuminate\View\View;
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -57,4 +60,12 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ]);
     }
+
+    public function boot(): void
+{
+    FilamentView::registerRenderHook(
+        'panels::body.end',
+        fn (): View => view('filament.components.halaman-web-button')
+    );
+}
 }
