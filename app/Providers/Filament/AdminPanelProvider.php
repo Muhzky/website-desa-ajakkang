@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandLogo(fn () => view('filament.admin.logo'))
+            ->brandLogo(fn() => view('filament.admin.logo'))
             ->brandLogoHeight('40px')
             ->colors([
                 'primary' => Color::Green,
@@ -38,8 +38,9 @@ class AdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('Halaman Web')
                     ->label('→ Halaman Web')
-                    ->icon('heroicon-o-globe-alt')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
                     ->url(url('/'), shouldOpenInNewTab: true)
+                    ->group(' ')        // 👈 GROUP PALING BAWAH (TRIK FILAMENT)
                     ->sort(9999),
             ])
 
