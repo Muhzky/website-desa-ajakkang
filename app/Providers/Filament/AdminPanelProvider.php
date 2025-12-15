@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
@@ -39,8 +40,10 @@ class AdminPanelProvider extends PanelProvider
                 NavigationItem::make('Halaman Web')
                     ->label('→ Halaman Web')
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->url(url('/'), shouldOpenInNewTab: true)
-                    ->group(' ')        // 👈 GROUP PALING BAWAH (TRIK FILAMENT)
+                    ->url(url('/'), shouldOpenInNewTab: true),
+                    
+                NavigationGroup::make(' ') // 👈 GROUP PALING BAWAH (TRIK FILAMENT)
+                    ->collapsible(false)
                     ->sort(9999),
             ])
 
