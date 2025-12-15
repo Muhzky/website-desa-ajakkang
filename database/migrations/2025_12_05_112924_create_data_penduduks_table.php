@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('laki_laki')->default(0);
             $table->integer('perempuan')->default(0);
             $table->integer('kepala_keluarga')->default(0);
-            $table->integer('mobilitas_permanen')->default(0); // pindah menetap
+            $table->integer('mobilitas_penduduk')->default(0); // pindah menetap
             $table->integer('mutasi_penduduk')->default(0);    // datang / pergi sementara
             $table->year('tahun'); // data per tahun
             $table->timestamps();

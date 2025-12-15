@@ -195,7 +195,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-person-check fs-3"></i>
               </div>
-              <h3 class="counter" data-target="{{ $data->mobilitas_permanen}}">0</h3>
+              <h3 class="counter" data-target="{{ $data->mobilitas_penduduk}}">0</h3>
               <p class="mb-0">Mobilitas nonpermanen</p>
             </div>
           </div>
