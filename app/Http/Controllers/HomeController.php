@@ -19,7 +19,7 @@ class HomeController extends Controller
                 'laki_laki' => 0,
                 'perempuan' => 0,
                 'kepala_keluarga' => 0,
-                'mobilitas_nonpermanen' => 0,
+                'mobilitas_penduduk' => 0,
                 'mutasi_penduduk' => 0,
             ];
         }
