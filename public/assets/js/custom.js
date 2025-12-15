@@ -66,43 +66,36 @@ document.addEventListener('DOMContentLoaded', function() {
   /* ===================================
      STRUKTUR ORGANISASI SWIPER
      =================================== */
-  const strukturSlider = document.querySelector('.struktur-slider');
-  
-  if (strukturSlider && typeof Swiper !== 'undefined') {
-    new Swiper('.struktur-slider', {
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.struktur-slider', {
       loop: true,
-      speed: 600,
-      slidesPerView: 1,
-      spaceBetween: 16,
       autoplay: {
-        delay: 3500,
+        delay: 3000,
         disableOnInteraction: false,
       },
+      slidesPerView: 1,
+      spaceBetween: 20,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
       breakpoints: {
-        576: {
+        640: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
         768: {
-          slidesPerView: 2,
-          spaceBetween: 24,
-        },
-        992: {
           slidesPerView: 3,
-          spaceBetween: 28,
+          spaceBetween: 30,
         },
-        1200: {
+        1024: {
           slidesPerView: 4,
-          spaceBetween: 32,
+          spaceBetween: 30,
         },
       },
     });
-  }
-
+  });
+  
   /* ===================================
      PETA WILAYAH SWIPER (PROFIL PAGE)
      =================================== */

@@ -5,12 +5,19 @@
 
 @section('page-title')
 @component('components.page-title')
-    @slot('title', 'Struktur Pemerintah Desa')
-    @slot('description', 'Berikut adalah struktur organisasi dan daftar pejabat pemerintahan Desa Ajakkang.')
+@slot('title', 'Struktur Pemerintah Desa')
+@slot('description', 'Berikut adalah struktur organisasi dan daftar pejabat pemerintahan Desa Ajakkang.')
 @slot('parent', 'Struktur')
 @slot('parentUrl', Request::is('/') ? '' : url(''))
 @endcomponent
 @endsection
+
+@php
+    use App\Models\StrukturOrganisasi;
+
+    $strukturPemdes = StrukturOrganisasi::where('slug', 'pemerintah-desa')->first();
+@endphp
+
 
 @section('content')
 <section class="struktur-kepengurusan section">
@@ -19,10 +26,25 @@
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10">
         <div class="struktur-img-container text-center">
-          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi Desa Ajakkang" class="img-fluid border rounded shadow-sm glightbox pemdes" style="max-height: 600px; object-fit: contain;">
+
+          @if($strukturPemdes)
+          <a href="{{ asset('storage/' . $strukturPemdes->gambar) }}"
+            class="glightbox"
+            data-gallery="struktur-pemdes">
+
+            <img src="{{ asset('storage/' . $strukturPemdes->gambar) }}"
+              alt="{{ $strukturPemdes->nama }}"
+              class="img-fluid border rounded shadow-sm"
+              style="max-height: 600px; object-fit: contain;">
+          </a>
+          @else
+          <p class="text-muted">Struktur Pemerintah Desa belum tersedia.</p>
+          @endif
+
         </div>
       </div>
     </div>
+
 
     <!-- Daftar Pejabat Desa -->
     <div class="row justify-content-center">
@@ -30,12 +52,12 @@
         <h4 class="fw-bold text-center mb-4 pt-5">Daftar Pejabat dan Staff Desa</h4>
         <div class="row g-4">
           @foreach([
-            ['nama' => 'Andi Baso', 'jabatan' => 'Kepala Desa', 'foto' => 'assets/img/kepala-desa.jpg'],
-            ['nama' => 'Sitti Nurhalima', 'jabatan' => 'Sekretaris Desa', 'foto' => 'images/sekretaris-desa.jpg'],
-            ['nama' => 'Muhammad Idris', 'jabatan' => 'Kaur Umum & Perencanaan', 'foto' => 'images/kaur-umum.jpg'],
-            ['nama' => 'Dewi Sartika', 'jabatan' => 'Kaur Keuangan', 'foto' => 'images/kaur-keuangan.jpg'],
-            ['nama' => 'Ahmad Fauzi', 'jabatan' => 'Kasi Pemerintahan', 'foto' => 'images/kasi-pem.jpg'],
-            ['nama' => 'Nurul Hikmah', 'jabatan' => 'Kasi Kesejahteraan', 'foto' => 'images/kasi-kesra.jpg'],
+          ['nama' => 'Andi Baso', 'jabatan' => 'Kepala Desa', 'foto' => 'assets/img/kepala-desa.jpg'],
+          ['nama' => 'Sitti Nurhalima', 'jabatan' => 'Sekretaris Desa', 'foto' => 'images/sekretaris-desa.jpg'],
+          ['nama' => 'Muhammad Idris', 'jabatan' => 'Kaur Umum & Perencanaan', 'foto' => 'images/kaur-umum.jpg'],
+          ['nama' => 'Dewi Sartika', 'jabatan' => 'Kaur Keuangan', 'foto' => 'images/kaur-keuangan.jpg'],
+          ['nama' => 'Ahmad Fauzi', 'jabatan' => 'Kasi Pemerintahan', 'foto' => 'images/kasi-pem.jpg'],
+          ['nama' => 'Nurul Hikmah', 'jabatan' => 'Kasi Kesejahteraan', 'foto' => 'images/kasi-kesra.jpg'],
           ] as $staff)
           <div class="col-md-6 col-lg-3">
             <div class="staff-card text-center p-4 bg-white rounded shadow-sm h-100 d-flex flex-column align-items-center">
@@ -86,7 +108,8 @@
 
   .staff-img {
     width: 180px;
-    height: auto; /* Rasio 3:4 → 140 / 187 ≈ 0.75 */
+    height: auto;
+    /* Rasio 3:4 → 140 / 187 ≈ 0.75 */
     object-fit: cover;
     border-radius: 4px;
     background-color: #f8f9fa;
@@ -97,7 +120,7 @@
 
 @push('scripts')
 <script>
-     const lightbox = GLightbox({
+  const lightbox = GLightbox({
     selector: '.pemdes'
   });
 </script>

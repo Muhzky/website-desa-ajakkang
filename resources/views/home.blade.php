@@ -159,7 +159,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-people fs-3"></i>
               </div>
-              <h3 class="counter" data-target="3394">0</h3>
+              <h3 class="counter" data-target="{{ $data->total_penduduk }}">0</h3>
               <p class="mb-0">Jumlah Penduduk</p>
             </div>
           </div>
@@ -168,7 +168,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-gender-male fs-3"></i>
               </div>
-              <h3 class="counter" data-target="1676">0</h3>
+              <h3 class="counter" data-target="{{ $data->laki_laki }}">0</h3>
               <p class="mb-0">Laki-laki</p>
             </div>
           </div>
@@ -177,7 +177,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-gender-female fs-3"></i>
               </div>
-              <h3 class="counter" data-target="1718">0</h3>
+              <h3 class="counter" data-target="{{ $data->perempuan }}">0</h3>
               <p class="mb-0">Perempuan</p>
             </div>
           </div>
@@ -186,7 +186,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-house-door fs-3"></i>
               </div>
-              <h3 class="counter" data-target="995">0</h3>
+              <h3 class="counter" data-target="{{ $data->kepala_keluarga }}">0</h3>
               <p class="mb-0">Kepala Keluarga</p>
             </div>
           </div>
@@ -195,7 +195,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-person-check fs-3"></i>
               </div>
-              <h3 class="counter" data-target="56">0</h3>
+              <h3 class="counter" data-target="{{ $data->mobilitas_permanen }}">0</h3>
               <p class="mb-0">Mobilitas nonpermanen</p>
             </div>
           </div>
@@ -204,7 +204,7 @@
               <div class="data-icon mx-auto mb-2">
                 <i class="bi bi-arrow-left-right fs-3"></i>
               </div>
-              <h3 class="counter" data-target="67">0</h3>
+              <h3 class="counter" data-target="{{ $data->mutasi_penduduk }}">0</h3>
               <p class="mb-0">Mutasi Penduduk</p>
             </div>
           </div>
@@ -345,228 +345,39 @@
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <div class="struktur-slider swiper">
       <div class="swiper-wrapper">
-        <!-- Kepala Desa -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Kepala Desa" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Agus Santoso</h5>
-              <span>Kepala Desa</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sekretaris Desa -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Sekretaris Desa" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Siti Aminah</h5>
-              <span>Sekretaris Desa</span>
+        @forelse($pemerintahDesa as $item)
+          <div class="swiper-slide">
+            <div class="struktur-item">
+              <div class="struktur-header">
+                @if($item->foto)
+                  <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" loading="lazy">
+                @else
+                  <!-- Gunakan placeholder default sesuai jenis kelamin atau umum -->
+                  @if(Str::contains(strtolower($item->nama), ['ibu', 'nyonya', 'bu']) || in_array(strtolower($item->jabatan), ['sekretaris desa', 'staf kesejahteraan', 'staf umum']))
+                    <img src="{{ asset('assets/img/person/person-f-default.webp') }}" alt="{{ $item->nama }}" loading="lazy">
+                  @else
+                    <img src="{{ asset('assets/img/person/person-m-default.webp') }}" alt="{{ $item->nama }}" loading="lazy">
+                  @endif
+                @endif
+              </div>
+              <div class="struktur-body">
+                <h5>{{ $item->nama }}</h5>
+                <span>{{ $item->jabatan }}</span>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Kaur Keuangan -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Kaur Keuangan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Budi Hartono</h5>
-              <span>Kaur Keuangan</span>
+        @empty
+          <div class="swiper-slide">
+            <div class="struktur-item">
+              <div class="struktur-body text-center">
+                <p>Belum ada data pemerintah desa</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Kaur Umum -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/kepala-desa.jpg') }}" alt="Kaur Umum" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Rina Wati</h5>
-              <span>Kaur Umum</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kasi Pemerintahan -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-5.webp') }}" alt="Kasi Pemerintahan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Joko Susilo</h5>
-              <span>Kasi Pemerintahan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kasi Kesejahteraan -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-f-6.webp') }}" alt="Kasi Kesejahteraan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Lina Marlina</h5>
-              <span>Kasi Kesejahteraan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kasi Pelayanan -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-7.webp') }}" alt="Kasi Pelayanan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Dedi Purwanto</h5>
-              <span>Kasi Pelayanan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Keuangan 1 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-f-8.webp') }}" alt="Staf Keuangan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Dewi Sartika</h5>
-              <span>Staf Keuangan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Keuangan 2 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-9.webp') }}" alt="Staf Keuangan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Eko Prasetyo</h5>
-              <span>Staf Keuangan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Umum 1 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-f-10.webp') }}" alt="Staf Umum" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Tuti Alawiyah</h5>
-              <span>Staf Umum</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Umum 2 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-10.webp') }}" alt="Staf Umum" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Fajar Nugroho</h5>
-              <span>Staf Umum</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Pemerintahan 1 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-f-11.webp') }}" alt="Staf Pemerintahan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Nia Kurnia</h5>
-              <span>Staf Pemerintahan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Pemerintahan 2 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-11.webp') }}" alt="Staf Pemerintahan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Hadi Wijaya</h5>
-              <span>Staf Pemerintahan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Kesejahteraan 1 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/') }}" alt="Staf Kesejahteraan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Riri Andini</h5>
-              <span>Staf Kesejahteraan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Kesejahteraan 2 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-12.webp') }}" alt="Staf Kesejahteraan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Rudi Hartanto</h5>
-              <span>Staf Kesejahteraan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Pelayanan 1 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-f-13.webp') }}" alt="Staf Pelayanan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Ibu Sari Melati</h5>
-              <span>Staf Pelayanan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Staf Pelayanan 2 -->
-        <div class="swiper-slide">
-          <div class="struktur-item">
-            <div class="struktur-header">
-              <img src="{{ asset('assets/img/person/person-m-13.webp') }}" alt="Staf Pelayanan" loading="lazy">
-            </div>
-            <div class="struktur-body">
-              <h5>Bapak Bambang Sutrisno</h5>
-              <span>Staf Pelayanan</span>
-            </div>
-          </div>
-        </div>
+        @endforelse
       </div>
 
+      <!-- Navigation -->
       <div class="swiper-navigation">
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
@@ -641,3 +452,37 @@
 <!-- /Kotak & Saran Section -->
 
 @endsection
+
+@push('scripts')
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.struktur-slider', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      slidesPerView: 1,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      },
+    });
+  });
+</script>
+@endpush
