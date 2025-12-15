@@ -6,7 +6,6 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
@@ -29,21 +28,19 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandLogo(fn() => view('filament.admin.logo'))
+            ->brandLogo(fn () => view('filament.admin.logo'))
             ->brandLogoHeight('40px')
             ->colors([
                 'primary' => Color::Green,
             ])
 
-            // ✅ BUTTON SIDEBAR PALING BAWAH
+            // ✅ BUTTON SIDEBAR PALING BAWAH (BENAR)
             ->navigationItems([
                 NavigationItem::make('Halaman Web')
                     ->label('→ Halaman Web')
                     ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->url(url('/'), shouldOpenInNewTab: true),
-                    
-                NavigationGroup::make(' ') // 👈 GROUP PALING BAWAH (TRIK FILAMENT)
-                    ->collapsible(false)
+                    ->url(url('/'), shouldOpenInNewTab: true)
+                    ->group(' ')     // 👈 KUNCI: GROUP PALING BAWAH
                     ->sort(9999),
             ])
 
