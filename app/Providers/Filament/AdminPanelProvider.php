@@ -29,11 +29,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandLogo(fn () => view('filament.admin.logo'))
+            ->brandLogoHeight('25px')
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->brandName('Desa Ajakkang')
-            ->favicon(fn () => asset('images/logo-ajakkang.png'))
 
             // ✅ BUTTON SIDEBAR PALING BAWAH (BENAR)
             ->navigationItems([

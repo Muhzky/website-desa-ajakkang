@@ -6,8 +6,6 @@ use Filament\Pages\Auth\Login as BaseLogin;
 
 class Login extends BaseLogin
 {
-    public function getHeading(): string
-    {
-        return 'Admin Desa';
-    }
+    // kamu boleh kosongkan class ini
+    // atau override method tertentu jika butuh
 }
