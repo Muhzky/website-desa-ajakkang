@@ -22,4 +22,10 @@ class CreateStrukturOrganisasi extends CreateRecord
 
         return $data;
     }
+    protected static bool $canCreateAnother = false;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index'); // Redirect ke halaman List
+    }
 }
