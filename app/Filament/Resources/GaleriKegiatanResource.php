@@ -13,13 +13,19 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\Galeri;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 
 class GaleriKegiatanResource extends Resource
 {
-    protected static ?int $navigationSort = 5;
-     protected static ?string $model = Galeri::class;
+    protected static ?int $navigationSort = 7;
+    protected static ?string $model = Galeri::class;
 
     protected static ?string $navigationLabel = 'Galeri Kegiatan';
+    public static function getPluralModelLabel(): string
+    {
+        return 'Galeri Kegiatan';
+    }
     protected static ?string $navigationGroup = 'Galeri Desa';
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
@@ -57,12 +63,46 @@ class GaleriKegiatanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('foto'),
-                Tables\Columns\TextColumn::make('nama')->searchable(),
-               Tables\Columns\TextColumn::make('tanggal_kegiatan')
-    ->formatStateUsing(fn ($state) => \Carbon\Carbon::parse($state)->format('d M Y')),
+                ImageColumn::make('foto')
+                    ->label('Foto')
+                    ->disk('public')
+                    ->width(200)
+                    ->height(150)
+                    ->square()
+                    ->extraImgAttributes(['style' => 'border: 2.5px solid #ccc; border-radius: 10px;']),
 
-            ]);
+                TextColumn::make('nama')
+                    ->label('Nama Kegiatan')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
+
+                TextColumn::make('deskripsi')
+                    ->label('Deskripsi')
+                    ->limit(60)
+                    ->wrap()
+                    ->toggleable(),
+
+                TextColumn::make('tanggal_kegiatan')
+                    ->label('Tanggal')
+                    ->date('d M Y')
+                    ->sortable(),
+            ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('kategori')
+                    ->options([
+                        'kegiatan' => 'Kegiatan Desa',
+                    ])
+                    ->default('kegiatan'),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->label('Lihat'),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus'),
+            ])
+            ->defaultSort('tanggal_kegiatan', 'desc');
     }
 
 

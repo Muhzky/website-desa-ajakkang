@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PemerintahDesa;
 
 class StrukturController extends Controller
 {
@@ -11,7 +12,9 @@ class StrukturController extends Controller
      */
     public function pemerintahdesa()
     {
-        return view('pages.struktur.pemerintahdesa');
+         $aparats = PemerintahDesa::orderBy('id')->get();
+
+        return view('pages.struktur.pemerintahdesa', compact('aparats'));
     }
 
      public function bpd()

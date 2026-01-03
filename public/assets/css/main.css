@@ -173,7 +173,7 @@ h6 {
 
 .data-item p {
     color: #666;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .trend-data-image img {
@@ -315,10 +315,10 @@ h6 {
     .navmenu a,
     .navmenu a:focus {
         color: var(--nav-color);
-        padding: 10px 13px;
-        font-size: 14px;
+        padding: 10px 10px;
+        font-size: 12.5px;
         font-family: var(--nav-font);
-        font-weight: 400;
+        font-weight: 500;
         display: flex;
         align-items: center;
         justify-content: space-between;

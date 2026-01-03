@@ -3,12 +3,18 @@
 @section('meta_description', 'Struktur organisasi Badan Permusyawaratan Desa (BPD) Desa Ajakkang, Kecamatan Soppeng Riaja, Kabupaten Barru.')
 @section('page-title')
 @component('components.page-title')
-    @slot('title', 'Struktur BPD')
-    @slot('description', 'Berikut adalah struktur organisasi Badan Permusyawaratan Desa (BPD) Desa Ajakkang.')
-    @slot('parent', 'Struktur')
-    @slot('parentUrl', Request::is('/') ? '' : url(''))
+@slot('title', 'Struktur BPD')
+@slot('description', 'Berikut adalah struktur organisasi Badan Permusyawaratan Desa (BPD) Desa Ajakkang.')
+@slot('parent', 'Struktur')
+@slot('parentUrl', Request::is('/') ? '' : url(''))
 @endcomponent
 @endsection
+
+@php
+use App\Models\StrukturOrganisasi;
+$strukturBpd = StrukturOrganisasi::where('slug', 'bpd')->first();
+@endphp
+
 @section('content')
 <section class="struktur-kepengurusan section">
   <div class="container" data-aos="fade-up">
@@ -16,7 +22,21 @@
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10">
         <div class="struktur-img-container text-center">
-          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi BPD Desa Ajakkang" class="img-fluid border rounded shadow-sm GLightbox bpd" style="max-height: 600px; object-fit: contain; padding-bottom: 20px;">
+
+          @if($strukturBpd)
+          <a href="{{ asset('storage/' . $strukturBpd->gambar) }}"
+            class="glightbox"
+            data-gallery="struktur-bpd">
+
+            <img src="{{ asset('storage/' . $strukturBpd->gambar) }}"
+              alt="{{ $strukturBpd->nama }}"
+              class="img-fluid border rounded shadow-sm"
+              style="max-height: 600px; object-fit: contain;">
+          </a>
+          @else
+          <p class="text-muted">Struktur Pemerintah Desa belum tersedia.</p>
+          @endif
+
         </div>
       </div>
     </div>
@@ -32,9 +52,11 @@
     --radius: 12px;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
+
   .struktur-kepengurusan {
     padding: 20px 0 100px 0;
   }
+
   .struktur-img-container img {
     max-height: 600px;
     object-fit: contain;
@@ -46,7 +68,7 @@
 
 @push('scripts')
 <script>
-     const lightbox = GLightbox({
+  const lightbox = GLightbox({
     selector: '.bpd'
   });
 </script>

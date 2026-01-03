@@ -6,7 +6,7 @@
 @section('page-title')
 @component('components.page-title')
 @slot('title', 'Struktur Pemerintah Desa')
-@slot('description', 'Berikut adalah struktur organisasi dan daftar pejabat pemerintahan Desa Ajakkang.')
+@slot('description', 'Berikut adalah struktur organisasi dan daftar aparat pemerintahan Desa Ajakkang.')
 @slot('parent', 'Struktur')
 @slot('parentUrl', Request::is('/') ? '' : url(''))
 @endcomponent
@@ -14,6 +14,7 @@
 
 @php
     use App\Models\StrukturOrganisasi;
+    use App\Models\PemerintahDesa;
 
     $strukturPemdes = StrukturOrganisasi::where('slug', 'pemerintah-desa')->first();
 @endphp
@@ -46,32 +47,37 @@
     </div>
 
 
-    <!-- Daftar Pejabat Desa -->
-    <div class="row justify-content-center">
-      <div class="col-lg-12">
-        <h4 class="fw-bold text-center mb-4 pt-5">Daftar Pejabat dan Staff Desa</h4>
-        <div class="row g-4">
-          @foreach([
-          ['nama' => 'Andi Baso', 'jabatan' => 'Kepala Desa', 'foto' => 'assets/img/kepala-desa.jpg'],
-          ['nama' => 'Sitti Nurhalima', 'jabatan' => 'Sekretaris Desa', 'foto' => 'images/sekretaris-desa.jpg'],
-          ['nama' => 'Muhammad Idris', 'jabatan' => 'Kaur Umum & Perencanaan', 'foto' => 'images/kaur-umum.jpg'],
-          ['nama' => 'Dewi Sartika', 'jabatan' => 'Kaur Keuangan', 'foto' => 'images/kaur-keuangan.jpg'],
-          ['nama' => 'Ahmad Fauzi', 'jabatan' => 'Kasi Pemerintahan', 'foto' => 'images/kasi-pem.jpg'],
-          ['nama' => 'Nurul Hikmah', 'jabatan' => 'Kasi Kesejahteraan', 'foto' => 'images/kasi-kesra.jpg'],
-          ] as $staff)
-          <div class="col-md-6 col-lg-3">
-            <div class="staff-card text-center p-4 bg-white rounded shadow-sm h-100 d-flex flex-column align-items-center">
-              <div class="staff-photo mb-3">
-                <img src="{{ asset($staff['foto']) }}" alt="{{ $staff['jabatan'] }}" class="staff-img">
-              </div>
-              <h5 class="mb-1 fw-bold">{{ $staff['nama'] }}</h5>
-              <p class="text-muted mb-0">{{ $staff['jabatan'] }}</p>
+   <!-- Daftar Pejabat Desa -->
+<div class="row justify-content-center">
+  <div class="col-lg-12">
+    <h4 class="fw-bold text-center mb-4 pt-5">Daftar Aparat Desa</h4>
+
+    <div class="row g-4">
+      @forelse ($aparats as $staff)
+        <div class="col-md-6 col-lg-3">
+          <div class="staff-card text-center p-4 bg-white rounded shadow-sm h-100 d-flex flex-column align-items-center">
+            
+            <div class="staff-photo mb-3">
+              <img 
+                src="{{ asset('storage/' . $staff->foto) }}" 
+                alt="{{ $staff->jabatan }}" 
+                class="staff-img"
+              >
             </div>
+
+            <h5 class="mb-1 fw-bold">{{ $staff->nama }}</h5>
+            <p class="text-muted mb-0">{{ $staff->jabatan }}</p>
           </div>
-          @endforeach
         </div>
-      </div>
+      @empty
+        <div class="col-12 text-center">
+          <p class="text-muted">Data aparat desa belum tersedia.</p>
+        </div>
+      @endforelse
     </div>
+  </div>
+</div>
+
   </div>
 </section>
 @endsection

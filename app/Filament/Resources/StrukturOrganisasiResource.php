@@ -92,7 +92,8 @@ class StrukturOrganisasiResource extends Resource
                     ->disk('public')
                     ->width(300)
                     ->height(250)
-                    ->square(),
+                    ->square()
+                    ->extraImgAttributes(['style' => 'border: 2.5px solid #ccc; border-radius: 10px;']),
 
                 TextColumn::make('nama')
                     ->label('Nama Struktur')
@@ -106,8 +107,11 @@ class StrukturOrganisasiResource extends Resource
 
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('Edit'),
-                Tables\Actions\DeleteAction::make()->label('Hapus'),
+                Tables\Actions\ViewAction::make()
+                    ->label('Lihat'),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->defaultSort('created_at', 'desc');
     }

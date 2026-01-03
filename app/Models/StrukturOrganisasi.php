@@ -13,5 +13,12 @@ class StrukturOrganisasi extends Model
         'slug',
         'gambar',
     ];
-}
 
+
+    public function posyandu()
+    {
+        $strukturPosyandu = StrukturOrganisasi::where('slug', 'posyandu')->get();
+
+        return view('pages.struktur.posyandu', compact('strukturPosyandu'));
+    }
+}

@@ -16,7 +16,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ route('pages.profil.index') }}">Profil Desa</a></li>
+                <li><a href="{{ route('pages.profil.index') }}">Profil</a></li>
                 <li><a href="{{ route('pages.galeri.index') }}">Galeri</a></li>
                 <li class="dropdown">
                     <a href=""><span>Transparansi</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -27,7 +27,7 @@
                         <li><a href="{{ route('pages.transparansi.bumdesa') }}">Bumdesa dan Kopdes MP</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('pages.berita.index') }}">Berita</a></li>
+                <li><a href="{{ route('pages.berita.index') }}">Informasi</a></li>
                 <li class="dropdown">
                     <a href=""><span>Struktur</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
@@ -40,9 +40,11 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('pages.layanan.pengaduan') }}">Pengaduan</a></li>
-                <li>
+                <!-- <li>
                     <a href="{{ Request::is('/') ? '#contact' : url('/#contact') }}">Kontak</a>
-                </li>
+                </li> -->
+                <li><a href="{{ route('pages.umkm.index') }}">UMKM</a></li>
+                <li><a href="{{ route('pages.layanan.cek-data') }}">Cek Data</a></li>
                 <li class="mobile-login-item">
                     <a href="{{ route('filament.admin.auth.login') }}"
                         class="login-item"

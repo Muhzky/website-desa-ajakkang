@@ -2,27 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 
 class PengaduanController extends Controller
 {
-    public function index()
-    {
-        return view('pages.layananpengaduan'); // atau sesuai path view-mu
-    }
-
     public function store(Request $request)
     {
-        // Validasi sederhana
-        $validated = $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => 'nullable|email',
-            'pesan' => 'required|string',
+        $request->validate([
+            'nama' => 'required',
+            'nomor_hp' => 'required',
+            'kategori' => 'required',
+            'isi_pengaduan' => 'required',
+            'foto_bukti' => 'nullable|image|max:5120',
         ]);
 
-        // TODO: simpan ke DB atau kirim email
-        // Pengaduan::create($validated);
+        $foto = null;
+        if ($request->hasFile('foto_bukti')) {
+            $foto = $request->file('foto_bukti')
+                ->store('pengaduan', 'public');
+        }
 
-        return back()->with('success', 'Pengaduan berhasil dikirim. Terima kasih.');
+        Pengaduan::create([
+            'nama' => $request->nama,
+            'nomor_hp' => $request->nomor_hp,
+            'kategori' => $request->kategori,
+            'isi_pengaduan' => $request->isi_pengaduan,
+            'foto_bukti' => $foto,
+        ]);
+
+        return back()->with('success', 'Pengaduan berhasil dikirim');
     }
 }

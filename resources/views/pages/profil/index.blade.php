@@ -10,6 +10,12 @@
 @endcomponent
 @endsection
 
+@php
+    use App\Models\DataPenduduk;
+
+    $data = DataPenduduk::latest()->first();
+@endphp
+
 @section('content')
 
 <section class="portfolio-details section">
@@ -144,22 +150,22 @@
     <div class="demografi-grid">
       <div class="card-modern demografi-card" data-aos="zoom-in" data-aos-delay="100">
         <div class="demografi-icon"><i class="bi bi-people-fill"></i></div>
-        <h3 class="demografi-number counter" data-target="3394">0</h3>
+        <h3 class="demografi-number counter" data-target="{{ $data->total_penduduk }}">0</h3>
         <p class="demografi-label">Total Penduduk</p>
       </div>
       <div class="card-modern demografi-card" data-aos="zoom-in" data-aos-delay="200">
         <div class="demografi-icon male"><i class="bi bi-gender-male"></i></div>
-        <h3 class="demografi-number counter" data-target="1676">0</h3>
+        <h3 class="demografi-number counter" data-target="{{ $data->laki_laki }}">0</h3>
         <p class="demografi-label">Laki-laki</p>
       </div>
       <div class="card-modern demografi-card" data-aos="zoom-in" data-aos-delay="300">
         <div class="demografi-icon female"><i class="bi bi-gender-female"></i></div>
-        <h3 class="demografi-number counter" data-target="1718">0</h3>
+        <h3 class="demografi-number counter" data-target="{{ $data->perempuan }}">0</h3>
         <p class="demografi-label">Perempuan</p>
       </div>
       <div class="card-modern demografi-card" data-aos="zoom-in" data-aos-delay="400">
         <div class="demografi-icon"><i class="bi bi-house-door-fill"></i></div>
-        <h3 class="demografi-number counter" data-target="995">0</h3>
+        <h3 class="demografi-number counter" data-target="{{ $data->kepala_keluarga }}">0</h3>
         <p class="demografi-label">Kepala Keluarga</p>
       </div>
     </div>

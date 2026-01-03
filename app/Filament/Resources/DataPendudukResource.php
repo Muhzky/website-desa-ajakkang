@@ -97,7 +97,16 @@ class DataPendudukResource extends Resource
                 Tables\Columns\TextColumn::make('mutasi_penduduk')
                     ->label('Mutasi Penduduk'),
             ])
-            ->defaultSort('tahun', 'desc');
+            
+
+            ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->label('Lihat'),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus'),
+            ]);
+            
     }
 
     public static function getRelations(): array

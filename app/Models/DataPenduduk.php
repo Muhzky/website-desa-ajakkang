@@ -17,7 +17,7 @@ class DataPenduduk extends Model
         'laki_laki',
         'perempuan',
         'kepala_keluarga',
-        'mobilitas_permanen',
+        'mobilitas_penduduk',
         'mutasi_penduduk',
     ];
 }

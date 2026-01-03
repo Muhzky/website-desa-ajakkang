@@ -1,277 +1,249 @@
 @extends('layouts.master')
 @section('title', 'Transparansi Anggaran - Desa Ajakkang')
 @section('meta_description', 'Transparansi anggaran Desa Ajakkang, Kecamatan Soppeng Riaja, Kabupaten Barru')
+
 @section('page-title')
-    @component('components.page-title')
-        @slot('title', 'Transparansi Anggaran')
-        @slot('description', 'Halaman ini menyajikan informasi lengkap mengenai transparansi anggaran yang dikelola oleh Desa Ajakkang.')
-        @slot('parent', 'Transparansi')
-        @slot('parentUrl', Request::is('/') ? '' : url(''))
-    @endcomponent
+@component('components.page-title')
+    @slot('title', 'Transparansi Anggaran')
+    @slot('description', 'Halaman ini menyajikan informasi lengkap mengenai transparansi anggaran yang dikelola oleh Desa Ajakkang.')
+    @slot('parent', 'Transparansi')
+    @slot('parentUrl', url('/'))
+@endcomponent
 @endsection
+
+
 @section('content')
-<!-- Transparansi Anggaran Section -->
 <section id="transparansi-anggaran" class="transparansi-anggaran section">
-    <div class="container" data-aos="fade-up">
-        <!-- Header Section: Judul dipusatkan -->
-        <!-- === 1. Transparansi Anggaran (Rekap Keuangan) === -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <h4 class="subsection-title">Rekap Keuangan <span id="judulTahun"></span></h4>
-                <p class="text-muted mb-4">Berikut ini adalah data-data mengenai transparansi anggaran yang dikelola oleh pemerintah Desa Ajakkang.</p>
-                <div class="row mb-4">
-                    <div class="col-12 text-center">
-                        <div class="mt-3" style="max-width: 150px; margin: 0 auto; padding: 0;">
-                            <select id="tahunSelect" class="form-select form-select-lg">
-                                <option value="2025">Tahun 2025</option>
-                                <option value="2024">Tahun 2024</option>
-                                <option value="2023">Tahun 2023</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="rekap-keuangan-card">
-                    <div class="rekap-item">
-                        <div class="rekap-icon text-success">
-                            <i class="bi bi-cash-stack"></i>
-                        </div>
-                        <div class="rekap-info">
-                            <p class="rekap-label">Pemasukan</p>
-                            <h3 class="rekap-value text-success" id="pemasukan">Rp0,00</h3>
-                        </div>
-                    </div>
-                    <div class="rekap-divider"></div>
-                    <div class="rekap-item">
-                        <div class="rekap-icon text-danger">
-                            <i class="bi bi-cash-coin"></i>
-                        </div>
-                        <div class="rekap-info">
-                            <p class="rekap-label">Pengeluaran</p>
-                            <h3 class="rekap-value text-danger" id="pengeluaran">Rp0,00</h3>
-                        </div>
-                    </div>
-                    <div class="rekap-divider"></div>
-                    <div class="rekap-item">
-                        <div class="rekap-icon text-primary">
-                            <i class="bi bi-bar-chart-line"></i>
-                        </div>
-                        <div class="rekap-info">
-                            <p class="rekap-label">Surplus/Defisit</p>
-                            <h3 class="rekap-value text-primary" id="surplus">Rp0,00</h3>
-                        </div>
-                    </div>
-                </div>
+<div class="container" data-aos="fade-up">
+
+{{-- ================= REKAP KEUANGAN ================= --}}
+<div class="row mb-5">
+    <div class="col-12">
+        <h4 class="subsection-title">
+            Rekap Keuangan Tahun {{ $tahun }}
+        </h4>
+
+        <p class="text-muted mb-4">
+            Berikut ini adalah data-data mengenai transparansi anggaran yang dikelola oleh pemerintah Desa Ajakkang.
+        </p>
+
+        {{-- Dropdown Tahun --}}
+        <div class="text-center mb-4">
+            <div style="max-width:150px;margin:auto">
+                <select id="tahunSelect" class="form-select form-select-lg">
+                    @forelse ($daftarTahun as $thn)
+                        <option value="{{ $thn }}" {{ $thn == $tahun ? 'selected' : '' }}>
+                            Tahun {{ $thn }}
+                        </option>
+                    @empty
+                        <option disabled>Tidak ada data</option>
+                    @endforelse
+                </select>
             </div>
         </div>
 
-        <!-- Modal Preview File -->
-        <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header border-0 pb-0">
-                        <h4 class="modal-title fw-bold text-center flex-grow-1" id="fileModalLabel">Pratinjau Berkas</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                    </div>
-                    <div class="modal-body p-0 position-relative" style="min-height: 60vh;">
-                        <div id="loadingIndicator" class="d-flex justify-content-center align-items-center position-absolute w-100 h-100" style="background: rgba(248, 249, 250, 0.8); z-index: 10; display: none;">
-                            <div class="text-center">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <p class="mt-2 mb-0">Memuat dokumen...</p>
-                            </div>
-                        </div>
-                        <iframe
-                            id="fileFrame"
-                            src=""
-                            style="width:100%; height: 100%; min-height: 60vh; border: none;"
-                            frameborder="0"
-                            onload="hideLoading()"
-                            onerror="showError()"
-                        ></iframe>
-                    </div>
-                    <div class="modal-footer justify-content-center border-0 pt-2">
-                        <small class="text-muted">Pastikan browser mendukung tampilan PDF.</small>
-                    </div>
+        {{-- Rekap Card --}}
+        <div class="rekap-keuangan-card">
+            <div class="rekap-item">
+                <div class="rekap-icon text-success">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+                <div class="rekap-info">
+                    <p class="rekap-label">Pemasukan</p>
+                    <h3 class="rekap-value text-success">
+                        {{ $rekap?->pemasukan_formatted ?? 'Rp0' }}
+                    </h3>
                 </div>
             </div>
-        </div>
 
-        <!-- === 2. Grafik Transparansi Anggaran === -->
-        <div class="row mb-5">
-            <div class="col-12">
-                <h4 class="subsection-title">Grafik Transparansi Anggaran</h4>
-                <p class="text-muted mb-4">Berikut ini adalah data-data mengenai transparansi anggaran yang dikelola oleh pemerintah Desa Ajakkang yang ditampilkan dalam bentuk grafik batang.</p>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <canvas id="chartAnggaran"></canvas>
-                        </div>
-                    </div>
+            <div class="rekap-divider"></div>
+
+            <div class="rekap-item">
+                <div class="rekap-icon text-danger">
+                    <i class="bi bi-cash-coin"></i>
+                </div>
+                <div class="rekap-info">
+                    <p class="rekap-label">Pengeluaran</p>
+                    <h3 class="rekap-value text-danger">
+                        {{ $rekap?->pengeluaran_formatted ?? 'Rp0' }}
+                    </h3>
                 </div>
             </div>
-        </div>
 
-        <!-- === 3. Daftar Transparansi Anggaran === -->
-        <div class="row">
-            <div class="col-12">
-                <h4 class="subsection-title">Daftar Transparansi Anggaran</h4>
-                <p class="text-muted mb-4">Berikut ini adalah data-data mengenai transparansi anggaran yang dikelola oleh pemerintah Desa Batupute.</p>
+            <div class="rekap-divider"></div>
 
-                <!-- Item 1 -->
-                <div class="transparansi-item">
-                    <div class="transparansi-icon">
-                        <i class="bi bi-file-earmark-pdf"></i>
-                    </div>
-                    <div class="transparansi-details">
-                        <h5>APBDes 2025</h5>
-                        <div class="transparansi-meta">
-                            <span><i class="bi bi-tag"></i> APBDes POKOK</span>
-                            <span><i class="bi bi-calendar"></i> Jumat, 05 September 2025</span>
-                        </div>
-                    </div>
-                    <div class="transparansi-actions">
-                        <a href="javascript:void(0);" onclick="openModal('1759381447_07.REALISASI_POKOK.SESUAI_PAJAK.xlsx')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-file-earmark-fill me-1"></i> Lihat
-                        </a>
-                        <a href="https://website.desa-batupute.com/transparansi/transparansi-anggaran/download/1759381447_07.REALISASI_POKOK.SESUAI_PAJAK.xlsx" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download me-1"></i> Unduh
-                        </a>
-                    </div>
+            <div class="rekap-item">
+                <div class="rekap-icon text-primary">
+                    <i class="bi bi-bar-chart-line"></i>
                 </div>
-
-                <!-- Item 2 -->
-                <div class="transparansi-item">
-                    <div class="transparansi-icon">
-                        <i class="bi bi-file-earmark-pdf"></i>
-                    </div>
-                    <div class="transparansi-details">
-                        <h5>APBDes 2025</h5>
-                        <div class="transparansi-meta">
-                            <span><i class="bi bi-tag"></i> APBDes POKOK</span>
-                            <span><i class="bi bi-calendar"></i> Jumat, 05 September 2025</span>
-                        </div>
-                    </div>
-                    <div class="transparansi-actions">
-                        <a href="javascript:void(0);" onclick="openModal('1759381296_07.REALISASI_POKOK.SESUAI_PAJAK.xlsx')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-file-earmark-fill me-1"></i> Lihat
-                        </a>
-                        <a href="https://website.desa-batupute.com/transparansi/transparansi-anggaran/download/1759381296_07.REALISASI_POKOK.SESUAI_PAJAK.xlsx" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download me-1"></i> Unduh
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="transparansi-item">
-                    <div class="transparansi-icon">
-                        <i class="bi bi-file-earmark-pdf"></i>
-                    </div>
-                    <div class="transparansi-details">
-                        <h5>APBDes 2025</h5>
-                        <div class="transparansi-meta">
-                            <span><i class="bi bi-tag"></i> APBDes PERUBAHAN</span>
-                            <span><i class="bi bi-calendar"></i> Jumat, 05 September 2025</span>
-                        </div>
-                    </div>
-                    <div class="transparansi-actions">
-                        <a href="javascript:void(0);" onclick="openModal('1759381600_08.REALISASI_PERUBAHAN.SESUAI_PAJAK_BARU.xlsx')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-file-earmark-fill me-1"></i> Lihat
-                        </a>
-                        <a href="https://website.desa-batupute.com/transparansi/transparansi-anggaran/download/1759381600_08.REALISASI_PERUBAHAN.SESUAI_PAJAK_BARU.xlsx" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download me-1"></i> Unduh
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="transparansi-item">
-                    <div class="transparansi-icon">
-                        <i class="bi bi-file-earmark-pdf"></i>
-                    </div>
-                    <div class="transparansi-details">
-                        <h5>APBDes 2025</h5>
-                        <div class="transparansi-meta">
-                            <span><i class="bi bi-tag"></i> APBDes PERUBAHAN</span>
-                            <span><i class="bi bi-calendar"></i> Jumat, 05 September 2025</span>
-                        </div>
-                    </div>
-                    <div class="transparansi-actions">
-                        <a href="javascript:void(0);" onclick="openModal('1759381827_08.REALISASI_PERUBAHAN.SESUAI_PAJAK_BARU.xlsx')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-file-earmark-fill me-1"></i> Lihat
-                        </a>
-                        <a href="https://website.desa-batupute.com/transparansi/transparansi-anggaran/download/1759381827_08.REALISASI_PERUBAHAN.SESUAI_PAJAK_BARU.xlsx" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download me-1"></i> Unduh
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="transparansi-item">
-                    <div class="transparansi-icon">
-                        <i class="bi bi-file-earmark-pdf"></i>
-                    </div>
-                    <div class="transparansi-details">
-                        <h5>APBDes 2024</h5>
-                        <div class="transparansi-meta">
-                            <span><i class="bi bi-tag"></i> APBDes POKOK</span>
-                            <span><i class="bi bi-calendar"></i> Senin, 18 Agustus 2025</span>
-                        </div>
-                    </div>
-                    <div class="transparansi-actions">
-                        <a href="javascript:void(0);" onclick="openModal('1755480971_REALISASI_POKOK.xlsx')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-file-earmark-fill me-1"></i> Lihat
-                        </a>
-                        <a href="https://website.desa-batupute.com/transparansi/transparansi-anggaran/download/1755480971_REALISASI_POKOK.xlsx" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download me-1"></i> Unduh
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Item 6 -->
-                <div class="transparansi-item">
-                    <div class="transparansi-icon">
-                        <i class="bi bi-file-earmark-pdf"></i>
-                    </div>
-                    <div class="transparansi-details">
-                        <h5>APBDes 2024</h5>
-                        <div class="transparansi-meta">
-                            <span><i class="bi bi-tag"></i> APBDes POKOK</span>
-                            <span><i class="bi bi-calendar"></i> Senin, 18 Agustus 2025</span>
-                        </div>
-                    </div>
-                    <div class="transparansi-actions">
-                        <a href="javascript:void(0);" onclick="openModal('1755481110_REALISASI_POKOK.xlsx')" class="btn btn-sm btn-outline-secondary">
-                            <i class="bi bi-file-earmark-fill me-1"></i> Lihat
-                        </a>
-                        <a href="https://website.desa-batupute.com/transparansi/transparansi-anggaran/download/1755481110_REALISASI_POKOK.xlsx" class="btn btn-sm btn-primary">
-                            <i class="bi bi-download me-1"></i> Unduh
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="d-flex justify-content-center mt-4">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a href="#" class="page-link"><i class="bi bi-chevron-left"></i></a>
-                        </li>
-                        <li class="page-item active">
-                            <a href="?page=1" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="?page=2" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="?page=2" class="page-link"><i class="bi bi-chevron-right"></i></a>
-                        </li>
-                    </ul>
+                <div class="rekap-info">
+                    <p class="rekap-label">Surplus / Defisit</p>
+                    <h3 class="rekap-value {{ ($rekap?->surplus ?? 0) >= 0 ? 'text-primary' : 'text-danger' }}">
+                        {{ $rekap?->surplus_formatted ?? 'Rp0' }}
+                    </h3>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+{{-- ================= GRAFIK ================= --}}
+<div class="row mb-5">
+    <div class="col-12">
+        <h4 class="subsection-title">Grafik Transparansi Anggaran</h4>
+        <p class="text-muted mb-4">
+            Data transparansi anggaran ditampilkan dalam bentuk grafik batang.
+        </p>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="chartAnggaran"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ================= DAFTAR TRANSPARANSI ================= --}}
+<div class="row">
+<div class="col-12">
+    <h4 class="subsection-title">Daftar Transparansi Anggaran</h4>
+    <p class="text-muted mb-4">
+        Dokumen resmi transparansi anggaran Desa Ajakkang.
+    </p>
+
+    @forelse ($anggarans as $item)
+        <div class="transparansi-item">
+            <div class="transparansi-icon">
+                <i class="bi bi-file-earmark-pdf"></i>
+            </div>
+
+            <div class="transparansi-details">
+                <h5>{{ $item->judul }}</h5>
+                <div class="transparansi-meta">
+                    <span>
+                        <i class="bi bi-tag"></i> {{ strtoupper($item->tipe) }}
+                    </span>
+                    <span>
+                        <i class="bi bi-calendar"></i> {{ $item->tanggal_formatted }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="transparansi-actions">
+                <button
+                    onclick="openModal('{{ $item->file_url }}')"
+                    class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-eye me-1"></i> Lihat
+                </button>
+
+                <a href="{{ $item->file_url }}"
+                   download
+                   class="btn btn-sm btn-primary">
+                    <i class="bi bi-download me-1"></i> Unduh
+                </a>
+            </div>
+        </div>
+    @empty
+        <div class="alert alert-warning text-center">
+            Tidak ada dokumen transparansi untuk tahun {{ $tahun }}.
+        </div>
+    @endforelse
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ $anggarans->withQueryString()->links() }}
+    </div>
+</div>
+</div>
+
+</div>
 </section>
+
+{{-- ================= MODAL PREVIEW ================= --}}
+<div class="modal fade" id="fileModal" tabindex="-1">
+<div class="modal-dialog modal-xl modal-dialog-centered">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Pratinjau Dokumen</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body p-0">
+        <iframe id="fileFrame" style="width:100%;height:80vh;border:none"></iframe>
+    </div>
+</div>
+</div>
+</div>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+/* ================= DROPDOWN TAHUN ================= */
+document.getElementById('tahunSelect')?.addEventListener('change', function () {
+    window.location.href = `?tahun=${this.value}`;
+});
+
+/* ================= MODAL ================= */
+function openModal(url) {
+    const frame = document.getElementById('fileFrame');
+    frame.src = url;
+
+    const modal = new bootstrap.Modal(document.getElementById('fileModal'));
+    modal.show();
+
+    document.getElementById('fileModal')
+        .addEventListener('hidden.bs.modal', () => frame.src = '');
+}
+
+/* ================= GRAFIK ================= */
+let chartInstance = null;
+
+fetch(`/api/rekap-keuangan/{{ $tahun }}`)
+    .then(res => res.json())
+    .then(data => {
+        const ctx = document.getElementById('chartAnggaran').getContext('2d');
+
+        if (chartInstance) chartInstance.destroy();
+
+        chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pemasukan', 'Pengeluaran', 'Surplus'],
+                datasets: [{
+                    data: [
+                        data.pemasukan ?? 0,
+                        data.pengeluaran ?? 0,
+                        data.surplus ?? 0
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx =>
+                                'Rp' + Number(ctx.raw).toLocaleString('id-ID')
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: value =>
+                                'Rp' + Number(value).toLocaleString('id-ID')
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+@endpush
+
 
 @push('styles')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -599,140 +571,4 @@
         }
     }
 </style>
-@endpush
-
-@push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    (function () {
-        'use strict';
-        // Data dari backend
-        const chartLabels = {!! json_encode($chartLabels ?? [2023, 2024, 2025]) !!};
-        const chartPendapatan = {!! json_encode($chartPendapatan ?? [0, 0, 0]) !!};
-        const chartPengeluaran = {!! json_encode($chartPengeluaran ?? [0, 0, 0]) !!};
-
-        // Format Rupiah
-        function formatRupiah(angka) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
-            }).format(angka || 0);
-        }
-
-        // Fetch data keuangan berdasarkan tahun
-        function fetchKeuangan(tahun) {
-            const loading = document.getElementById('loadingIndicator');
-            if (loading) loading.style.display = 'flex';
-            fetch("{{ route('transparansi.anggaran.data') }}?tahun=" + tahun)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('pemasukan').textContent = formatRupiah(data.pemasukan);
-                    document.getElementById('pengeluaran').textContent = formatRupiah(data.pengeluaran);
-                    document.getElementById('surplus').textContent = formatRupiah(data.surplus);
-                    document.getElementById('judulTahun').textContent = tahun;
-                })
-                .catch(error => {
-                    console.error('Gagal mengambil data keuangan:', error);
-                    document.getElementById('pemasukan').textContent = 'Rp0,00';
-                    document.getElementById('pengeluaran').textContent = 'Rp0,00';
-                    document.getElementById('surplus').textContent = 'Rp0,00';
-                })
-                .finally(() => {
-                    if (loading) loading.style.display = 'none';
-                });
-        }
-
-        // Chart initialization
-        function initChart() {
-            const ctx = document.getElementById('chartAnggaran');
-            if (!ctx) return;
-            new Chart(ctx.getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: chartLabels,
-                    datasets: [
-                        {
-                            label: 'Pendapatan',
-                            data: chartPendapatan,
-                            backgroundColor: 'rgba(25, 135, 84, 0.6)',
-                            borderColor: 'rgba(25, 135, 84, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Pengeluaran',
-                            data: chartPengeluaran,
-                            backgroundColor: 'rgba(220, 53, 69, 0.6)',
-                            borderColor: 'rgba(220, 53, 69, 1)',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function (value) {
-                                    return 'Rp ' + value.toLocaleString('id-ID');
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: { position: 'top' },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const label = context.dataset.label || '';
-                                    const value = 'Rp ' + context.parsed.y.toLocaleString('id-ID');
-                                    return `${label}: ${value}`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Modal functions
-        window.openModal = function (filename) {
-            if (!filename) {
-                alert('File tidak tersedia.');
-                return;
-            }
-            const modal = new bootstrap.Modal(document.getElementById('fileModal'));
-            const frame = document.getElementById('fileFrame');
-            const loading = document.getElementById('loadingIndicator');
-            loading.style.display = 'flex';
-            frame.src = '/transparansi/preview/' + encodeURIComponent(filename);
-            modal.show();
-        };
-
-        window.hideLoading = function () {
-            const loading = document.getElementById('loadingIndicator');
-            if (loading) loading.style.display = 'none';
-        };
-
-        window.showError = function () {
-            const loading = document.getElementById('loadingIndicator');
-            if (loading) {
-                loading.innerHTML = '<div class="text-center text-danger"><i class="bi bi-exclamation-triangle fs-1"></i><p class="mt-2">Gagal memuat file PDF.</p></div>';
-                loading.style.display = 'flex';
-            }
-        };
-
-        // DOM Ready
-        document.addEventListener('DOMContentLoaded', function () {
-            const tahunSelect = document.getElementById('tahunSelect');
-            if (tahunSelect) {
-                fetchKeuangan(tahunSelect.value);
-                tahunSelect.addEventListener('change', () => fetchKeuangan(tahunSelect.value));
-            }
-            initChart();
-        });
-    })();
-</script>
 @endpush

@@ -9,6 +9,12 @@
     @slot('parentUrl', Request::is('/') ? '' : url(''))
 @endcomponent
 @endsection
+
+@php
+use App\Models\StrukturOrganisasi;
+$strukturPkk = StrukturOrganisasi::where('slug', 'pkk')->first();
+@endphp
+
 @section('content')
 <section class="struktur-kepengurusan section">
   <div class="container" data-aos="fade-up">
@@ -16,7 +22,21 @@
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10">
         <div class="struktur-img-container text-center">
-          <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Organisasi PKK Desa Ajakkang" class="img-fluid border rounded shadow-sm GLightbox pkk" style="max-height: 600px; object-fit: contain; padding-bottom: 20px;">
+
+        @if($strukturPkk)
+          <a href="{{ asset('storage/' . $strukturPkk->gambar) }}"
+            class="glightbox"
+            data-gallery="struktur-pkk">
+
+            <img src="{{ asset('storage/' . $strukturPkk->gambar) }}"
+              alt="{{ $strukturPkk->nama }}"
+              class="img-fluid border rounded shadow-sm"
+              style="max-height: 600px; object-fit: contain;">
+          </a>
+          @else
+          <p class="text-muted">Struktur Pemerintah Desa belum tersedia.</p>
+          @endif
+
         </div>
       </div>
     </div>

@@ -5,12 +5,18 @@
 
 @section('page-title')
 @component('components.page-title')
-    @slot('title', 'Struktur Posyandu')
-    @slot('description', 'Berikut adalah struktur organisasi Posyandu di Desa Ajakkang.')
-    @slot('parent', 'Struktur')
-    @slot('parentUrl', Request::is('/') ? '' : url(''))
+@slot('title', 'Struktur Posyandu')
+@slot('description', 'Berikut adalah struktur organisasi Posyandu di Desa Ajakkang.')
+@slot('parent', 'Struktur')
+@slot('parentUrl', Request::is('/') ? '' : url(''))
 @endcomponent
 @endsection
+
+@php
+    use App\Models\StrukturOrganisasi;
+    $strukturPosyandu = StrukturOrganisasi::where('slug', 'posyandu')->get();
+
+@endphp
 
 @section('content')
 <section class="struktur-kepengurusan section">
@@ -19,19 +25,29 @@
       <div class="col-lg-10">
         <div id="posyanduCarousel" class="carousel slide position-relative" data-bs-ride="carousel">
           <div class="carousel-inner rounded-3 overflow-hidden shadow-sm">
+
+            @forelse ($strukturPosyandu as $index => $item)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+              <a href="{{ asset('storage/' . $item->gambar) }}"
+                class="glightbox posyandu"
+                data-gallery="posyandu">
+
+                <img src="{{ asset('storage/' . $item->gambar) }}"
+                  alt="{{ $item->nama }}"
+                  class="d-block w-100"
+                  style="max-height: 600px; object-fit: contain;">
+              </a>
+            </div>
+            @empty
             <div class="carousel-item active">
-              <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Posyandu 1 Desa Ajakkang" class="d-block w-100 GLightbox posyandu" style="max-height: 600px; object-fit: contain;">
+              <div class="text-center p-5">
+                <p class="text-muted">Struktur Posyandu belum tersedia.</p>
+              </div>
             </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Posyandu 2 Desa Ajakkang" class="d-block w-100 GLightbox posyandu" style="max-height: 600px; object-fit: contain;">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Posyandu 3 Desa Ajakkang" class="d-block w-100 GLightbox posyandu" style="max-height: 600px; object-fit: contain;">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/img/struktur-pemdes.jpg') }}" alt="Struktur Posyandu 4 Desa Ajakkang" class="d-block w-100 GLightbox posyandu" style="max-height: 600px; object-fit: contain;">
-            </div>
+            @endforelse
+
           </div>
+
 
           <!-- Tombol Prev - di dalam gambar -->
           <button class="carousel-control-prev carousel-control-inside" type="button" data-bs-target="#posyanduCarousel" data-bs-slide="prev">
@@ -151,13 +167,10 @@
 
 @push('scripts')
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     const lightbox = GLightbox({
       selector: '.posyandu'
     });
   });
 </script>
 @endpush
-
-
-...

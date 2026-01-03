@@ -17,11 +17,31 @@
         </div>
         <p class="motto">Menjelajahi keindahan, budaya, dan semangat gotong royong.</p>
 
-        <!-- Button -->
-        <div class="d-flex justify-content-center gap-3 mt-4">
-          <a href="#sambutan" class="btn btn-primary px-4 py-2">Sambutan Kepala Desa</a>
-          <a href="#call-to-action" class="btn btn-primary px-4 py-2">Jelajahi Desa</a>
+        <!-- Button Group -->
+        <div class="d-flex flex-column align-items-center gap-3 mt-4">
+
+          <!-- Baris Atas -->
+          <div class="d-flex justify-content-center gap-3">
+            <a href="#sambutan" class="btn btn-primary px-4 py-2">
+              Sambutan Kepala Desa
+            </a>
+            <a href="#call-to-action" class="btn btn-primary px-4 py-2">
+              Jelajahi Desa
+            </a>
+          </div>
+
+          <!-- Baris Bawah -->
+          <div class="d-flex justify-content-center gap-3">
+            <a href="{{ route('pages.umkm.index') }}" class="btn btn-primary px-4 py-2">
+              UMKM Desa
+            </a>
+            <a href="{{ route('pages.layanan.cek-data') }}" class="btn btn-primary px-4 py-2">
+              Cek Data
+            </a>
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>
@@ -196,7 +216,7 @@
                 <i class="bi bi-person-check fs-3"></i>
               </div>
               <h3 class="counter" data-target="{{ $data->mobilitas_penduduk }}">0</h3>
-              <p class="mb-0">Mobilitas nonpermanen</p>
+              <p class="mb-0">Mobilitas Penduduk</p>
             </div>
           </div>
           <div class="col-md-4">
@@ -213,6 +233,14 @@
     </div>
   </div>
 
+  <!-- Link Selengkapnya -->
+  <div class="container mt-5" data-aos="fade-up">
+    <div class="text-end">
+      <a href="" class="lihat-selengkapnya" style="font-size: 16px;">
+        Lihat Selengkapnya <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
 </section>
 <!-- End Administrasi Penduduk Section -->
 
@@ -328,10 +356,34 @@
             </div>
           </div>
         </div><!-- End Feature Item -->
+
+        <!-- Box 6: Cek Data Kependudukan -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-item-box">
+            <div class="icon-wrapper">
+              <i class="bi bi-search"></i>
+            </div>
+            <div class="feature-content">
+              <h3>
+                <span class="title-with-underline">Cek Data Kependudukan</span>
+              </h3>
+              <p>
+                Periksa status data kependudukan Anda secara mandiri menggunakan NIK
+                atau identitas lainnya.
+              </p>
+              <a href="{{ route('pages.layanan.cek-data') }}" class="read-more">
+                Lihat Selengkapnya <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- End Feature Item -->
+
       </div>
     </div>
   </div>
-</section><!-- /Layanan Kami Section -->
+</section>
+<!-- /Layanan Kami Section -->
 
 <!-- Struktur Organisasi Section -->
 <section id="struktur-organisasi" class="struktur-organisasi section">
@@ -346,34 +398,34 @@
     <div class="struktur-slider swiper">
       <div class="swiper-wrapper">
         @forelse($pemerintahDesa as $item)
-          <div class="swiper-slide">
-            <div class="struktur-item">
-              <div class="struktur-header">
-                @if($item->foto)
-                  <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" loading="lazy">
-                @else
-                  <!-- Gunakan placeholder default sesuai jenis kelamin atau umum -->
-                  @if(Str::contains(strtolower($item->nama), ['ibu', 'nyonya', 'bu']) || in_array(strtolower($item->jabatan), ['sekretaris desa', 'staf kesejahteraan', 'staf umum']))
-                    <img src="{{ asset('assets/img/person/person-f-default.webp') }}" alt="{{ $item->nama }}" loading="lazy">
-                  @else
-                    <img src="{{ asset('assets/img/person/person-m-default.webp') }}" alt="{{ $item->nama }}" loading="lazy">
-                  @endif
-                @endif
-              </div>
-              <div class="struktur-body">
-                <h5>{{ $item->nama }}</h5>
-                <span>{{ $item->jabatan }}</span>
-              </div>
+        <div class="swiper-slide">
+          <div class="struktur-item">
+            <div class="struktur-header">
+              @if($item->foto)
+              <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" loading="lazy">
+              @else
+              <!-- Gunakan placeholder default sesuai jenis kelamin atau umum -->
+              @if(Str::contains(strtolower($item->nama), ['ibu', 'nyonya', 'bu']) || in_array(strtolower($item->jabatan), ['sekretaris desa', 'staf kesejahteraan', 'staf umum']))
+              <img src="{{ asset('assets/img/person/person-f-default.webp') }}" alt="{{ $item->nama }}" loading="lazy">
+              @else
+              <img src="{{ asset('assets/img/person/person-m-default.webp') }}" alt="{{ $item->nama }}" loading="lazy">
+              @endif
+              @endif
+            </div>
+            <div class="struktur-body">
+              <h5>{{ $item->nama }}</h5>
+              <span>{{ $item->jabatan }}</span>
             </div>
           </div>
+        </div>
         @empty
-          <div class="swiper-slide">
-            <div class="struktur-item">
-              <div class="struktur-body text-center">
-                <p>Belum ada data pemerintah desa</p>
-              </div>
+        <div class="swiper-slide">
+          <div class="struktur-item">
+            <div class="struktur-body text-center">
+              <p>Belum ada data pemerintah desa</p>
             </div>
           </div>
+        </div>
         @endforelse
       </div>
 
@@ -455,7 +507,7 @@
 
 @push('scripts')
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     const swiper = new Swiper('.struktur-slider', {
       loop: true,
       autoplay: {

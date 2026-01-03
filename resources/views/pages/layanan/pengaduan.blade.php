@@ -14,67 +14,117 @@
 <section class="pengaduan-form section">
   <div class="container" data-aos="fade-up">
     <div class="row align-items-center g-5">
+
       <!-- Ilustrasi -->
       <div class="col-lg-6" data-aos="fade-right">
-        <img src="{{ asset('assets/img/icon/undraw_collaborative-writing_ir40.svg') }}" 
-             alt="Ilustrasi Pengaduan Masyarakat" 
-             class="img-fluid rounded"
-             style="width: 100%; max-height: 300px; object-fit: contain; justify-content: center;">
+        <img src="{{ asset('assets/img/icon/undraw_collaborative-writing_ir40.svg') }}"
+          alt="Ilustrasi Pengaduan Masyarakat"
+          class="img-fluid rounded"
+          style="width:100%; max-height:300px; object-fit:contain;">
       </div>
 
       <!-- Form Pengaduan -->
       <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
         <div class="card p-4 shadow-sm">
           <h3 class="mb-4 text-center">Formulir Pengaduan</h3>
-          <form action="https://website.desa-batupute.com/layanan/layanan-pengaduan/store" method="POST" enctype="multipart/form-data" class="php-email-form aos-init aos-animate">
-            <input type="hidden" name="_token" value="yIAfGPbIz1ldMVhcylsj7CsbGzO7zwfZbxb7VOFE" autocomplete="off">
+
+          {{-- ALERT SUCCESS --}}
+          @if (session('success'))
+          <div class="alert alert-success">
+            {{ session('success') }}
+          </div>
+          @endif
+
+          {{-- ALERT ERROR --}}
+          @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+
+          <form
+            action="{{ route('pengaduan.store') }}"
+            method="POST"
+            enctype="multipart/form-data">
+            @csrf
+
             <div class="row g-3">
+              <!-- Nama -->
               <div class="col-md-6">
-                <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Anda" required>
+                <label class="form-label">Nama</label>
+                <input type="text"
+                  name="nama"
+                  class="form-control"
+                  value="{{ old('nama') }}"
+                  required>
               </div>
 
+              <!-- Nomor HP -->
               <div class="col-md-6">
-                <label for="nomor_hp" class="form-label">Nomor HP</label>
-                <input type="tel" class="form-control" id="nomor_hp" name="nomor_hp" placeholder="Masukkan Nomor HP Anda" required>
+                <label class="form-label">Nomor HP</label>
+                <input type="tel"
+                  name="nomor_hp"
+                  class="form-control"
+                  value="{{ old('nomor_hp') }}"
+                  required>
               </div>
 
+              <!-- Foto Bukti -->
               <div class="col-md-6">
-                <label for="foto_bukti" class="form-label">Foto Bukti</label>
-                <input type="file" class="form-control" name="foto_bukti" id="foto_bukti">
-                <small id="formatError" class="text-danger d-none">Format gambar tidak sesuai! (Hanya jpeg, jpg, png, gif, heic, heif)</small>
-                <small id="sizeError" class="text-danger d-none">Ukuran gambar tidak boleh melebihi 2 MB.</small>
+                <label class="form-label">Foto Bukti</label>
+                <input type="file"
+                  name="foto_bukti"
+                  class="form-control"
+                  accept="image/*">
+                <small class="text-muted">Max 5MB (jpg, png)</small>
               </div>
 
+              <!-- Kategori -->
               <div class="col-md-6">
-                <label for="kategori" class="form-label">Kategori</label>
-                <select name="kategori" id="kategori" class="form-select" required>
-                  <option selected disabled>- Pilih Kategori -</option>
-                  <option value="Umum">Umum</option>
-                  <option value="Sosial">Sosial</option>
-                  <option value="Keamanan">Keamanan</option>
-                  <option value="Kesehatan">Kesehatan</option>
-                  <option value="Kebersihan">Kebersihan</option>
+                <label class="form-label">Kategori</label>
+                <select name="kategori" class="form-select" required>
+                  <option value="">- Pilih Kategori -</option>
+                  <option value="Umum" {{ old('kategori')=='Umum'?'selected':'' }}>Umum</option>
+                  <option value="Sosial" {{ old('kategori')=='Sosial'?'selected':'' }}>Sosial</option>
+                  <option value="Keamanan" {{ old('kategori')=='Keamanan'?'selected':'' }}>Keamanan</option>
+                  <option value="Kesehatan" {{ old('kategori')=='Kesehatan'?'selected':'' }}>Kesehatan</option>
+                  <option value="Kebersihan" {{ old('kategori')=='Kebersihan'?'selected':'' }}>Kebersihan</option>
                 </select>
               </div>
 
+              <!-- Isi Pengaduan -->
               <div class="col-12">
-                <label for="isi_pengaduan" class="form-label">Isi Pengaduan</label>
-                <textarea class="form-control" name="isi_pengaduan" id="isi_pengaduan" rows="1" placeholder="Tulis pengaduan Anda di sini secara lengkap..." required></textarea>
+                <label class="form-label">Isi Pengaduan</label>
+                <textarea name="isi_pengaduan"
+                  class="form-control"
+                  rows="4"
+                  required>{{ old('isi_pengaduan') }}</textarea>
               </div>
 
-              <div class="col-12 text-center d-flex justify-content-between mt-3">
-                <button type="reset" class="btn btn-white px-4 py-2">Reset</button>
-                <button type="submit" class="btn btn-primary px-4 py-2">Kirim Pengaduan</button>
+              <!-- Button -->
+              <div class="col-12 d-flex justify-content-between mt-3">
+                <button type="reset" class="btn btn-outline-secondary">
+                  Reset
+                </button>
+                <button type="submit" class="btn btn-success">
+                  Kirim Pengaduan
+                </button>
               </div>
             </div>
+
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 @endsection
+
 
 @push('styles')
 <style>

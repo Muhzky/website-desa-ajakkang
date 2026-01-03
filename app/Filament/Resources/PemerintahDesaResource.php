@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
+
 
 class PemerintahDesaResource extends Resource
 {
@@ -52,20 +55,27 @@ class PemerintahDesaResource extends Resource
                     ->options([
                         'Kepala Desa' => 'Kepala Desa',
                         'Sekretaris Desa' => 'Sekretaris Desa',
-                        'Kaur Umum' => 'Kaur Umum',
+                        'Kaur Umum Dan Tata Usaha' => 'Kaur Umum Dan Tata Usaha',
                         'Kaur Keuangan' => 'Kaur Keuangan',
-                        'Kasi Pemerintahan' => 'Kasi Pemerintahan',
-                        'Kasi Pembangunan' => 'Kasi Pembangunan',
+                        'Kaur Perencanaan' => 'Kaur Perencanaan',
+                        'Kasi Pelayanan' => 'Kasi Pelayanan',
+                        'Kasi Kesejahteraan' => 'Kasi Kesejahteraan',
+                        'Staf' => 'Staf',
+                        'Kadus Ajakkang' => 'Kadus Ajakkang',
+                        'Kadus Kampung Baru' => 'Kadus Kampung Baru',
+                        'Kadus Latappareng' => 'Kadus Latappareng',
+                        'Kadus Minangatoa' => 'Kadus Minangatoa',
+                        'Petugas Kebersihan' => 'Petugas Kebersihan',
                     ])
                     ->native(false)
                     ->required(),
 
-                Forms\Components\FileUpload::make('foto')
+                FileUpload::make('foto')
+                    ->label('Foto')
                     ->image()
                     ->disk('public')
-                    ->maxSize(3048)
                     ->directory('pemerintah-desa')
-                    ->rules(['image', 'max:2048'])
+                    ->maxSize(2048) // 2MB
                     ->required(),
             ]);
     }
@@ -74,9 +84,12 @@ class PemerintahDesaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('foto')
-                    ->circular()
-                    ->size(40),
+                ImageColumn::make('foto')
+                    ->label('Foto')
+                    ->disk('public')
+                    ->height(100)
+                    ->square()
+                    ->extraImgAttributes(['style' => 'border: 2.5px solid #ccc;']),
 
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable()
@@ -87,8 +100,11 @@ class PemerintahDesaResource extends Resource
                     ->sortable(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->label('Lihat'),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->label('Hapus'),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
