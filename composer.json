@@ -38,9 +38,6 @@
     },
 
     "scripts": {
-        "vercel": [
-            "@php artisan storage:link --force"
-        ],
         "setup": [
             "composer install",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
