@@ -30,6 +30,10 @@
             "dest": "/public/vendor/$1"
         },
         {
+            "src": "/livewire/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
             "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot))",
             "dest": "/public/$1"
         },
