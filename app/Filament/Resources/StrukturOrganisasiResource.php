@@ -18,9 +18,9 @@ class StrukturOrganisasiResource extends Resource
 {
     protected static ?string $model = StrukturOrganisasi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $navigationGroup = 'Profil Desa';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function getNavigationLabel(): string
     {
@@ -86,6 +86,15 @@ class StrukturOrganisasiResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(
+                fn($query) =>
+                $query->orderByRaw("
+                CASE 
+                    WHEN slug = 'pemerintah-desa' THEN 0
+                    ELSE 1
+                END
+            ")->orderByDesc('created_at')
+            )
             ->columns([
                 ImageColumn::make('gambar')
                     ->label('Gambar')
@@ -93,7 +102,9 @@ class StrukturOrganisasiResource extends Resource
                     ->width(300)
                     ->height(250)
                     ->square()
-                    ->extraImgAttributes(['style' => 'border: 2.5px solid #ccc; border-radius: 10px;']),
+                    ->extraImgAttributes([
+                        'style' => 'border: 2.5px solid #ccc; border-radius: 10px;'
+                    ]),
 
                 TextColumn::make('nama')
                     ->label('Nama Struktur')
@@ -103,18 +114,18 @@ class StrukturOrganisasiResource extends Resource
                 TextColumn::make('slug')
                     ->label('Slug')
                     ->badge()
-                    ->color('primary'),
-
+                    ->color(
+                        fn($state) =>
+                        $state === 'pemerintah-desa' ? 'success' : 'primary'
+                    ),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->label('Lihat'),
+                Tables\Actions\ViewAction::make()->label('Lihat'),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->label('Hapus'),
-            ])
-            ->defaultSort('created_at', 'desc');
+                Tables\Actions\DeleteAction::make()->label('Hapus'),
+            ]);
     }
+
 
     public static function getRelations(): array
     {

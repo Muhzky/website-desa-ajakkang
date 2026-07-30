@@ -20,7 +20,7 @@ use Filament\Tables\Columns\IconColumn;
 class GaleriWisataResource extends Resource
 {
     protected static ?string $model = Galeri::class;
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 13;
 
     protected static ?string $navigationLabel = 'Galeri Wisata';
     public static function getPluralModelLabel(): string
@@ -28,7 +28,7 @@ class GaleriWisataResource extends Resource
         return 'Galeri Wisata';
     }
     protected static ?string $navigationGroup = 'Galeri Desa';
-    protected static ?string $navigationIcon = 'heroicon-o-camera';
+    protected static ?string $navigationIcon = 'heroicon-o-map';
 
     public static function getEloquentQuery(): Builder
     {

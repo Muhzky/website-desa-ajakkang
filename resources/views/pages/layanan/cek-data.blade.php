@@ -55,7 +55,7 @@ sebagai warga Desa Ajakkang.')
         <!-- ================= HASIL DATA ================= -->
         @isset($penduduk)
         <div class="row justify-content-center mt-4">
-            <div class="col-lg-10">
+            <div class="col-lg-8">
 
                 <div class="card cekdata-result-card">
                     <div class="card-header bg-success text-white">
@@ -204,10 +204,11 @@ sebagai warga Desa Ajakkang.')
 
     /* Hasil */
     .cekdata-result-card {
+        max-width: 580px;
         border-radius: 14px;
         overflow: hidden;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-        margin-top: 20px;
+        margin: 20px auto 0;
         border: 1px solid #f1f3f5;
     }
 
@@ -228,7 +229,7 @@ sebagai warga Desa Ajakkang.')
 
     .cekdata-table th,
     .cekdata-table td {
-        padding: 10px 16px;
+        padding: 8px 14px;
         text-align: left;
         border-bottom: 1px solid #f1f3f5;
     }
@@ -265,13 +266,18 @@ sebagai warga Desa Ajakkang.')
         padding: 14px;
         color: #856404;
         font-size: 13px;
-        margin-top: 18px;
+    max-width: 580px;
+    margin: 20px auto 0;
     }
 
     /* Responsif */
     @media (max-width: 576px) {
         .cekdata-card {
             padding: 16px;
+        }
+
+        .cekdata-table th {
+            width: 40%;
         }
 
         .cekdata-title {

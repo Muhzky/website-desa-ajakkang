@@ -29,10 +29,10 @@ use Filament\Tables\Actions\DeleteAction;
 
 class BumdesResource extends Resource
 {
-    protected static ?int $navigationSort = 13;
+    protected static ?int $navigationSort = 19;
     protected static ?string $model = Bumdes::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
     protected static ?string $navigationGroup = 'Transparansi';
     
     public static function form(Form $form): Form

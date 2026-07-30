@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UmkmResource extends Resource
 {
     protected static ?string $model = Umkm::class;
-    protected static ?int $navigationSort = 4;
     protected static ?string $navigationGroup = 'Potensi Desa';
+    protected static ?int $navigationSort = 6;
     protected static ?string $navigationLabel = 'UMKM (Daftar Toko)';
     protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
 

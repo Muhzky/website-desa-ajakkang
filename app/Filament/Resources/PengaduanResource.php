@@ -18,10 +18,10 @@ class PengaduanResource extends Resource
 {
     protected static ?string $model = Pengaduan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-oval-left-ellipsis';
 
-    protected static ?int $navigationSort = 14;
-    protected static ?string $navigationGroup = 'Pengaduan & Aspirasi';
+    protected static ?int $navigationSort = 20;
+    protected static ?string $navigationGroup = 'Pengaduan & Kontak';
     public static function getPluralModelLabel(): string
     {
         return 'Pengaduan';

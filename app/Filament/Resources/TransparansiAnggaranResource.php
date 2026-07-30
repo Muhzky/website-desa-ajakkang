@@ -19,10 +19,10 @@ use Filament\Tables\Actions\Action;
 
 class TransparansiAnggaranResource extends Resource
 {
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 16;
     protected static ?string $model = TransparansiAnggaran::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-scale';
     protected static ?string $navigationGroup = 'Transparansi';
     public static function getPluralModelLabel(): string
     {

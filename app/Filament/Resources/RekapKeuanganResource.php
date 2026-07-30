@@ -18,10 +18,10 @@ use Filament\Tables\Actions\DeleteAction;
 
 class RekapKeuanganResource extends Resource
 {
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 15;
     protected static ?string $model = RekapKeuangan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
     protected static ?string $navigationGroup = 'Transparansi';
     public static function getPluralModelLabel(): string
     {

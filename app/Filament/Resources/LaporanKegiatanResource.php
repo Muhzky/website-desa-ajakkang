@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class LaporanKegiatanResource extends Resource
 {
-    protected static ?int $navigationSort = 11;
+    protected static ?int $navigationSort = 17;
     protected static ?string $model = LaporanKegiatan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
     protected static ?string $navigationGroup = 'Transparansi';
     public static function getPluralModelLabel(): string
     {

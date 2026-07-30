@@ -12,6 +12,7 @@ class PemerintahDesa extends Model
     protected $table = 'pemerintah_desas';
 
     protected $fillable = [
+        'nip',
         'nama',
         'jabatan',
         'foto',

@@ -537,3 +537,201 @@ textarea.form-control {
         font-size: 13px;
     }
 }
+
+.umkm-card img,
+.informasi-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+   /* ===============================
+   UMKM COMPACT CARD STYLE
+   Green + Black Theme
+================================ */
+
+    .umkm-card-compact {
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        transition: .25s ease;
+    }
+
+    .umkm-card-compact:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
+    }
+
+    /* ===============================
+   IMAGE
+================================ */
+
+    .umkm-thumb {
+        width: 100%;
+        height: 150px;
+        /* 🔽 lebih kecil */
+        background: #f2f2f2;
+        overflow: hidden;
+    }
+
+    .umkm-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: .4s ease;
+    }
+
+    .umkm-card-compact:hover img {
+        transform: scale(1.06);
+    }
+
+    /* ===============================
+   BODY
+================================ */
+
+    .umkm-body {
+        padding: 10px 12px 12px;
+    }
+
+    /* Kategori */
+    .umkm-category {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        background: #05833F;
+        /* hijau desa */
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 20px;
+        margin-bottom: 6px;
+    }
+
+    /* Nama Produk */
+    .umkm-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #111;
+        line-height: 1.4;
+        margin-bottom: 4px;
+        min-height: 34px;
+    }
+
+    /* Harga */
+    .umkm-price {
+        font-size: 14px;
+        font-weight: 700;
+        color: #05833F;
+        margin-bottom: 2px;
+    }
+
+    /* Toko */
+    .umkm-store {
+        font-size: 13px;
+        color: #555;
+        margin: 3px 0px;
+        font-weight: 800;
+    }
+
+    /* Button */
+    .umkm-card-compact .btn {
+        font-size: 12px;
+        border-radius: 8px;
+        padding: 6px;
+    }
+
+    .custom-pagination .page-link {
+        color: #05833F;
+        border-radius: 6px;
+        padding: 6px 10px;
+        margin: 0 2px;
+        font-weight: 500;
+    }
+
+    .custom-pagination .page-item.active .page-link {
+        background-color: #05833F;
+        border-color: #05833F;
+        color: #fff;
+    }
+
+    .custom-pagination .page-item.disabled .page-link {
+        opacity: .5;
+    }
+
+
+    
+
+    /* ===============================
+   RESPONSIVE
+================================ */
+
+    @media (max-width: 575px) {
+        .umkm-thumb {
+            height: 140px;
+        }
+    }
+
+    /* =========================
+   STYLE MISI DESA
+========================= */
+
+.misi-content {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #2d3748;
+}
+
+/* Ordered list */
+.misi-content ol {
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+}
+
+.misi-content ol li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.25rem;
+}
+
+/* Bullet list */
+.misi-content ul {
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+}
+
+.misi-content ul li {
+    margin-bottom: 0.6rem;
+}
+
+/* Paragraph */
+.misi-content p {
+    margin-bottom: 0.75rem;
+}
+
+/* Highlight number */
+.misi-content ol li::marker {
+    font-weight: 600;
+    color: #198754; /* bootstrap success */
+}
+
+/* =========================
+   MISI LIST NUMBERED
+========================= */
+
+.misi-list {
+    padding-left: 1.4rem;
+    margin-bottom: 0;
+    counter-reset: item;
+}
+
+.misi-list li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.4rem;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.misi-list li::marker {
+    font-weight: 700;
+    color: #198754; /* bootstrap success */
+}
+
+

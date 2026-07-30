@@ -10,7 +10,9 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\TransparansiController;
 use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\PemerintahDesaController;
+use App\Http\Controllers\AdministrasiPendudukController;
 use App\Models\RekapKeuangan;
+use App\Http\Controllers\KomoditasPertanianController;
 
 Route::get('/api/rekap-keuangan/{tahun}', function ($tahun) {
     $rekap = RekapKeuangan::where('tahun', $tahun)->first();
@@ -140,6 +142,9 @@ Route::get(
 )->name('bumdes.download');
 
 
+Route::get('/komoditas-pertanian', [KomoditasPertanianController::class, 'index'])
+    ->name('pages.pertanian.index');
+
 
 
 
@@ -177,13 +182,27 @@ Route::get('/cek-data', [CekDataController::class, 'index'])
     ->name('pages.layanan.cek-data');
 
 
+Route::get('/administrasi-penduduk', [AdministrasiPendudukController::class, 'index'])
+    ->name('pages.administrasi.index');
+
+Route::get('/berita/{slug}', [HomeController::class, 'detail'])
+    ->name('pages.berita.detail');
+
 
 
 /*
 | Contact (form)
 */
-Route::post('/contact/store', [ContactController::class, 'store'])
+
+Route::post('/kontak-kami', [HomeController::class, 'storeKontak'])
     ->name('pages.contact.store');
+
+
+use App\Http\Controllers\PerikananController;
+
+Route::get('/perikanan', [PerikananController::class, 'index'])
+    ->name('pages.perikanan.index');
+
 
 /*
 | Catatan: Filament/admin routes di-handle oleh Filament sendiri (tidak perlu didefinisikan di sini).

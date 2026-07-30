@@ -12,10 +12,10 @@ use Filament\Tables\Table;
 
 class InformasiResource extends Resource
 {
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 14;
     protected static ?string $model = Informasi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?string $navigationGroup = 'Informasi Desa';
     public static function getPluralModelLabel(): string

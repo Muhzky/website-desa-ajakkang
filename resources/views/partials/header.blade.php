@@ -39,12 +39,19 @@
                         <li><a href="{{ route('pages.struktur.posyandu') }}">Posyandu</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('pages.layanan.pengaduan') }}">Pengaduan</a></li>
                 <!-- <li>
                     <a href="{{ Request::is('/') ? '#contact' : url('/#contact') }}">Kontak</a>
                 </li> -->
-                <li><a href="{{ route('pages.umkm.index') }}">UMKM</a></li>
+                 <li class="dropdown">
+                    <a href=""><span>Potensi Desa</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="{{ route('pages.umkm.index') }}">UMKM</a></li>
+                        <li><a href="{{ route('pages.pertanian.index') }}">Pertanian</a></li>
+                        <li><a href="{{ route('pages.struktur.pkk') }}">Perikanan</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('pages.layanan.cek-data') }}">Cek Data</a></li>
+                <li><a href="{{ route('pages.layanan.pengaduan') }}">Pengaduan</a></li>
                 <li class="mobile-login-item">
                     <a href="{{ route('filament.admin.auth.login') }}"
                         class="login-item"

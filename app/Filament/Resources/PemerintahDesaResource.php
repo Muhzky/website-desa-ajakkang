@@ -18,35 +18,38 @@ use Filament\Tables\Columns\ImageColumn;
 
 class PemerintahDesaResource extends Resource
 {
-    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationGroup = 'Profil Desa';
 
     protected static ?string $model = PemerintahDesa::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?int $navigationSort = 2;
 
     public static function getNavigationLabel(): string
     {
-        return 'Pemerintah Desa';
+        return 'Aparatur Desa';
     }
     public static function getPluralModelLabel(): string
     {
-        return 'Pemerintah Desa';
+        return 'Aparatur Desa';
     }
     public static function getModelLabel(): string
     {
-        return 'Pemerintah Desa';
+        return 'Aparatur Desa';
     }
 
     public static function getSlug(): string
     {
-        return 'pemdes'; // url
+        return 'Aparatur-Desa'; // url
     }
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('nip')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
@@ -57,10 +60,10 @@ class PemerintahDesaResource extends Resource
                         'Sekretaris Desa' => 'Sekretaris Desa',
                         'Kaur Umum Dan Tata Usaha' => 'Kaur Umum Dan Tata Usaha',
                         'Kaur Keuangan' => 'Kaur Keuangan',
-                        'Kaur Perencanaan' => 'Kaur Perencanaan',
+                        'Kasi Pemerintahan' => 'Kasi Pemerintahan',
+                        'Kasi Kesejahraan' => 'Kasi Kesejahraan',
                         'Kasi Pelayanan' => 'Kasi Pelayanan',
                         'Kasi Kesejahteraan' => 'Kasi Kesejahteraan',
-                        'Staf' => 'Staf',
                         'Kadus Ajakkang' => 'Kadus Ajakkang',
                         'Kadus Kampung Baru' => 'Kadus Kampung Baru',
                         'Kadus Latappareng' => 'Kadus Latappareng',
@@ -87,9 +90,14 @@ class PemerintahDesaResource extends Resource
                 ImageColumn::make('foto')
                     ->label('Foto')
                     ->disk('public')
-                    ->height(100)
-                    ->square()
-                    ->extraImgAttributes(['style' => 'border: 2.5px solid #ccc;']),
+                    ->height(120)
+                    ->extraImgAttributes([
+                        'style' => 'border: 2.5px solid #ccc; width: 80px; height: 120px; object-fit: cover; aspect-ratio: 3/4;',
+                    ]),
+
+                Tables\Columns\TextColumn::make('nip')
+                    ->searchable()
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable()

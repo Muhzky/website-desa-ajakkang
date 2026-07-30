@@ -18,7 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 
 class GaleriKegiatanResource extends Resource
 {
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 12;
     protected static ?string $model = Galeri::class;
 
     protected static ?string $navigationLabel = 'Galeri Kegiatan';
@@ -27,7 +27,7 @@ class GaleriKegiatanResource extends Resource
         return 'Galeri Kegiatan';
     }
     protected static ?string $navigationGroup = 'Galeri Desa';
-    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
+    protected static ?string $navigationIcon = 'heroicon-o-photo';
 
     public static function getEloquentQuery(): Builder
     {

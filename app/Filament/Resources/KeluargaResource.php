@@ -15,7 +15,9 @@ class KeluargaResource extends Resource
 {
     protected static ?string $model = Keluarga::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
+    protected static ?string $navigationGroup = 'Administrasi Penduduk';
+    protected static ?int $navigationSort = 4;
     protected static ?string $navigationLabel = 'Keluarga (KK)';
     protected static ?string $pluralModelLabel = 'Data Keluarga';
     
@@ -57,8 +59,14 @@ class KeluargaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('no_kk')->searchable(),
                 Tables\Columns\TextColumn::make('alamat')->limit(30),
-                Tables\Columns\TextColumn::make('rt'),
-                Tables\Columns\TextColumn::make('rw'),
+                Tables\Columns\TextColumn::make('rt')
+                    ->label('RT')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('rw')
+                    ->label('RW')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('penduduks_count')
                     ->counts('penduduks')
                     ->label('Jumlah Anggota'),

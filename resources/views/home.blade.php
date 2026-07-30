@@ -96,6 +96,7 @@
           <!-- Visi & Misi Accordion -->
           <div class="mt-5">
             <div class="accordion accordion-flush" id="visiMisiAccordion">
+
               <!-- Visi -->
               <div class="accordion-item border-bottom">
                 <h3 class="accordion-header">
@@ -109,11 +110,20 @@
                     <i class="bi bi-bullseye me-2 text-success"></i>Visi Desa Ajakkang
                   </button>
                 </h3>
+
                 <div id="visiCollapse" class="accordion-collapse collapse show" data-bs-parent="#visiMisiAccordion">
                   <div class="accordion-body bg-light rounded-2 p-3">
-                    <p class="mb-0 fw-medium">
-                      Terwujudnya Desa Ajakkang sebagai desa mandiri yang istiqamah menjalankan amar ma'ruf nahi munkar menuju keridhaan Allah Subhanahu Wata'ala.
+
+                    @if($profilDesa?->visi)
+                    <div class="visi-content">
+                      {!! $profilDesa->visi !!}
+                    </div>
+                    @else
+                    <p class="text-muted fst-italic mb-0">
+                      Visi desa belum tersedia.
                     </p>
+                    @endif
+
                   </div>
                 </div>
               </div>
@@ -131,20 +141,39 @@
                     <i class="bi bi-check2-circle me-2 text-success"></i>Misi Desa Ajakkang
                   </button>
                 </h3>
+
                 <div id="misiCollapse" class="accordion-collapse collapse" data-bs-parent="#visiMisiAccordion">
-                  <div class="accordion-body bg-light rounded-2 p-3">
-                    <ol class="mb-0 ps-3">
-                      <li>Mewujudkan penduduk Desa Ajakkang menjadi insan yang bertaqwa kepada Allah SWT, patuh dan taat terhadap segala peraturan yang berlaku.</li>
-                      <li>Mewujudkan SDM mandiri dan optimalisasi sumber daya alam secara berkelanjutan.</li>
-                      <li>Mewujudkan pelayanan prima melalui kelembagaan pemerintahan yang bersih, transparan, akuntabel, dan profesional.</li>
-                      <li>Mewujudkan perekonomian desa yang mandiri dan pemberdayaan masyarakat dalam mengentaskan kemiskinan.</li>
-                      <li>Mewujudkan layanan kesehatan dan lingkungan hidup yang sehat serta berkelanjutan.</li>
+                  <div class="accordion-body bg-light rounded-3 p-4">
+
+                    @if($profilDesa?->misi)
+
+                    @php
+                    // Pecah misi per baris
+                    $misiItems = preg_split('/\r\n|\r|\n/', strip_tags($profilDesa->misi));
+                    @endphp
+
+                    <ol class="misi-list">
+                      @foreach($misiItems as $item)
+                      @if(trim($item))
+                      <li>{{ trim($item) }}</li>
+                      @endif
+                      @endforeach
                     </ol>
+
+                    @else
+                    <p class="text-muted fst-italic mb-0">
+                      Misi desa belum tersedia.
+                    </p>
+                    @endif
+
                   </div>
                 </div>
               </div>
+
+
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -236,7 +265,7 @@
   <!-- Link Selengkapnya -->
   <div class="container mt-5" data-aos="fade-up">
     <div class="text-end">
-      <a href="" class="lihat-selengkapnya" style="font-size: 16px;">
+      <a href="{{ route('pages.administrasi.index') }}" class="lihat-selengkapnya">
         Lihat Selengkapnya <i class="bi bi-arrow-right"></i>
       </a>
     </div>
@@ -252,7 +281,7 @@
     <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
       <div class="col-xl-10">
         <div class="text-center">
-          <a href="https://youtu.be/Edv5SVckIR8?si=ntMxWYRjoXokzc0c" class="glightbox play-btn"></a>
+          <a href="https://youtu.be/p6oqmoHsnTI?si=5MTnd5Ek1LRdHIvU" class="glightbox play-btn"></a>
           <h3>Keindahan Desa Ajakkang</h3>
           <p>Tak banyak yang tahu, Desa Ajakkang menyimpan keindahan luar biasa—dan semuanya bisa Anda saksikan dalam video berikut.</p>
         </div>
@@ -385,6 +414,172 @@
 </section>
 <!-- /Layanan Kami Section -->
 
+<!-- UMKM Produk Section -->
+<section id="umkm-desa" class="umkm-section section light-background">
+
+  <div class="container section-title" data-aos="fade-up">
+    <span class="subtitle">UMKM</span>
+    <h2>Produk UMKM Desa Ajakkang</h2>
+    <p>Produk unggulan masyarakat Desa Ajakkang.</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <!-- ================= LIST PRODUK ================= -->
+    <div class="row g-4">
+
+      @forelse ($produkUmkm as $item)
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+
+        <div class="card umkm-card-compact h-100">
+
+          <!-- FOTO -->
+          <div class="umkm-thumb">
+            <img
+              src="{{ $item->foto_produk ? asset('storage/'.$item->foto_produk) : asset('assets/img/default-umkm.jpg') }}"
+              alt="{{ $item->nama_produk }}"
+              loading="lazy">
+          </div>
+
+          <!-- BODY -->
+          <div class="umkm-body">
+
+            <span class="umkm-category">
+              {{ $item->kategori }}
+            </span>
+
+            <h6 class="umkm-name">
+              {{ $item->nama_produk }}
+            </h6>
+
+            <div class="umkm-price">
+              Rp {{ number_format($item->harga,0,',','.') }}
+            </div>
+
+            <div class="umkm-store">
+              {{ $item->umkm->nama_toko }}
+            </div>
+
+            <div class="umkm-owner">
+              Owner : {{ $item->umkm->pemilik }}
+            </div>
+
+            @php
+            $waNumber = preg_replace('/[^0-9]/', '', $item->umkm->nomor_whatsapp);
+            $message = urlencode("Halo kak, apakah stok masih ada? {$item->nama_produk}");
+            @endphp
+
+            <a
+              href="https://wa.me/{{ $waNumber }}?text={{ $message }}"
+              target="_blank"
+              class="btn btn-outline-success btn-sm w-100 mt-2">
+              <i class="bi bi-whatsapp"></i> Hubungi
+            </a>
+
+          </div>
+        </div>
+      </div>
+      @empty
+      <div class="col-12 text-center">
+        <p class="text-muted">Produk UMKM belum tersedia.</p>
+      </div>
+      @endforelse
+
+    </div>
+
+    <!-- LINK KE HALAMAN UMKM -->
+    <div class="text-end mt-4">
+      <a href="{{ route('pages.umkm.index') }}" class="lihat-selengkapnya">
+        Lihat Semua Produk UMKM <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+<!-- /UMKM Produk Section -->
+
+
+<!-- Informasi Desa Section -->
+<section id="informasi-desa" class="informasi-section section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <span class="subtitle">Informasi</span>
+    <h2 class="fw-bold">Informasi & Berita Desa</h2>
+    <p>Informasi terbaru seputar kegiatan dan pengumuman Desa Ajakkang.</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row g-4">
+
+      @forelse ($informasis as $berita)
+      <div class="col-lg-4 col-md-6">
+        <article class="card berita-card h-100 shadow-sm border-0">
+
+          <!-- Thumbnail -->
+          <div class="berita-thumb">
+            <img
+              src="{{ $berita->foto
+                    ? asset('storage/' . $berita->foto)
+                    : asset('assets/img/default-berita.jpg') }}"
+              class="card-img-top"
+              alt="{{ $berita->judul }}"
+              loading="lazy">
+          </div>
+
+          <!-- Body -->
+          <div class="card-body d-flex flex-column">
+
+            <small class="text-muted mb-2">
+              <i class="bi bi-calendar-event me-1"></i>
+              {{ \Carbon\Carbon::parse($berita->tanggal)->format('d M Y') }}
+            </small>
+
+            <h5 class="card-title">
+              {{ Str::limit($berita->judul, 70) }}
+            </h5>
+
+            <p class="card-text flex-grow-1">
+              {{ Str::limit(strip_tags($berita->ringkasan ?? $berita->konten), 110) }}
+            </p>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer bg-white border-0 pt-0">
+            <a
+              href="{{ route('pages.berita.detail', $berita->id) }}"
+              class="read-more fw-semibold">
+              Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+
+        </article>
+      </div>
+      @empty
+      <div class="col-12">
+        <div class="text-center py-5">
+          <i class="bi bi-newspaper fs-1 text-muted mb-3 d-block"></i>
+          <p class="text-muted mb-0">
+            Belum ada informasi atau berita yang dipublikasikan.
+          </p>
+        </div>
+      </div>
+      @endforelse
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-end mt-4">
+      <a href="{{ route('pages.berita.index') }}" class="lihat-selengkapnya fw-semibold">
+        Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+</section>
+<!-- /Informasi Desa Section -->
+
 <!-- Struktur Organisasi Section -->
 <section id="struktur-organisasi" class="struktur-organisasi section">
   <!-- Section Title -->
@@ -439,6 +634,7 @@
 </section>
 <!-- /Struktur Organisasi Section -->
 
+
 <!-- Kontak & Saran Section -->
 <section id="contact" class="contact section light-background">
   <div class="container section-title" data-aos="fade-up">
@@ -464,40 +660,83 @@
         </div>
       </div>
 
-      <!-- Kolom Form Kotak Saran -->
+      <!-- FORM -->
       <div class="col-lg-6">
-        <div class="form-wrapper">
-          <form action="{{ route('pages.contact.store') }}" method="post" class="php-email-form" data-aos="fade" data-aos-delay="100">
+        <div class="form-wrapper contact-form-card">
+
+          {{-- SUCCESS --}}
+          @if (session('success'))
+          <div class="alert alert-success alert-soft">
+            {{ session('success') }}
+          </div>
+          @endif
+
+          {{-- ERROR --}}
+          @if ($errors->any())
+          <div class="alert alert-danger alert-soft">
+            <ul class="mb-0 ps-3">
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+
+          <form action="{{ route('pages.contact.store') }}" method="POST">
             @csrf
+
             <div class="row gy-3">
-              <div class="col-md-6 col-12">
-                <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Lengkap" required>
+
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  name="nama"
+                  class="form-control form-control-lg"
+                  placeholder="Nama Lengkap"
+                  value="{{ old('nama') }}"
+                  required>
               </div>
 
-              <div class="col-md-6 col-12">
-                <input type="email" class="form-control" name="email" placeholder="Masukkan Email" required>
+              <div class="col-md-6">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control form-control-lg"
+                  placeholder="Email"
+                  value="{{ old('email') }}"
+                  required>
               </div>
 
               <div class="col-md-12">
-                <input type="text" class="form-control" name="subject" placeholder="Subjek" required>
+                <input
+                  type="text"
+                  name="subject"
+                  class="form-control form-control-lg"
+                  placeholder="Subjek"
+                  value="{{ old('subject') }}"
+                  required>
               </div>
 
               <div class="col-md-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required></textarea>
+                <textarea
+                  name="message"
+                  class="form-control form-control-lg"
+                  rows="5"
+                  placeholder="Tulis pesan Anda..."
+                  required>{{ old('message') }}</textarea>
               </div>
 
-              <div class="col-md-12 text-center">
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Pesan Anda telah dikirim. Terima kasih!</div>
-                </div>
-                <button type="submit">Kirim</button>
+              <div class="col-md-12 text-center mt-3">
+                <button type="submit" class="btn btn-success btn-lg px-5">
+                  Kirim Pesan
+                </button>
               </div>
+
             </div>
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </section>

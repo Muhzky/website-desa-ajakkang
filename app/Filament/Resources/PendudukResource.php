@@ -21,6 +21,8 @@ class PendudukResource extends Resource
     protected static ?string $model = Penduduk::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationGroup = 'Administrasi Penduduk';
+    protected static ?int $navigationSort = 5;
     protected static ?string $navigationLabel = 'Data Penduduk';
     protected static ?string $pluralModelLabel = 'Data Penduduk';
 
@@ -148,26 +150,38 @@ class PendudukResource extends Resource
                             ])
                             ->native(false),
 
-                            
 
-                        
 
-                            Select::make('status_keluarga')
-                                ->label('Status Keluarga')
-                                ->required()
-                                ->options([
-                                    1 => 'Kepala Keluarga',
-                                    2 => 'Istri',
-                                    3 => 'Anak',
-                                    4 => 'Orang Tua',
-                                    5 => 'Lainnya',
-                                ])
-                                ->native(false),
+
+
+                        Select::make('status_keluarga')
+                            ->label('Status Keluarga')
+                            ->required()
+                            ->options([
+                                1 => 'Kepala Keluarga',
+                                2 => 'Istri',
+                                3 => 'Anak',
+                                4 => 'Orang Tua',
+                                5 => 'Lainnya',
+                            ])
+                            ->native(false),
+
+                        Select::make('status_mutasi')
+                            ->label('Status Mutasi')
+                            ->required()
+                            ->options([
+                                'tetap' => 'Tetap',
+                                'datang' => 'Datang',
+                                'pindah' => 'Pindah',
+                                'lahir' => 'Lahir',
+                                'meninggal' => 'Meninggal',
+                            ])
+                            ->native(false)
                     ])
-                    
+
                     ->columns(2),
 
-                    
+
             ]);
     }
 

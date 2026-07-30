@@ -6,23 +6,17 @@
 @section('page-title')
 @component('components.page-title')
 @slot('title', 'Profil Desa')
-@slot('description', 'Mengenal lebih dekat Desa Ajakkang, sejarah, struktur wilayah, demografi, dan potensi desa.')
+@slot('description', $profilDesa?->sub_judul)
 @endcomponent
 @endsection
-
-@php
-    use App\Models\DataPenduduk;
-
-    $data = DataPenduduk::latest()->first();
-@endphp
 
 @section('content')
 
 <section class="portfolio-details section">
   <div class="container" data-aos="fade-up">
     <div class="container">
-    <img class="glightbox petdes" src="{{ asset('assets/img/peta/peta-desa-ajakkang.jpg') }}" alt="Peta Desa Ajakkang" style="width: 100%; height: auto; padding: 0 100px 0 100px;">
-</div>
+      <img class="glightbox petdes" src="{{ asset('assets/img/peta/peta-desa-ajakkang.jpg') }}" alt="Peta Desa Ajakkang" style="width: 100%; height: auto; padding: 0 100px 0 100px;">
+    </div>
     <div class="row justify-content-between gy-4 mt-4">
       <!-- Kolom Informasi (kiri pada layar besar) -->
       <div class="col-lg-4 order-lg-first" data-aos="fade-up">
@@ -61,83 +55,26 @@
       </div>
 
       <div class="col-lg-8 order-lg-last" data-aos="fade-up">
+
         <div class="card-modern portfolio-description">
-  <h3>Sejarah Desa</h3>
-  <ol type="1">
-    <li>
-      <p>
-        Desa Ajakkang berada di Kecamatan Soppeng Riaja, yang dulunya bagian dari Kerajaan Ajatappareng—wilayah berbasis pertanian dan perikanan.
-      </p>
-    </li>
-    <li>
-      <p>
-        Pada abad ke-15, Ajatappareng dikuasai Gowa, lalu dibebaskan oleh Arung Palakka (Raja Bone) pada awal abad ke-16. Sebagai balas jasa, wilayah antara Sungai Batu Pute dan Sungai Takkalasi diserahkan kepada Bone.
-      </p>
-    </li>
-    <li>
-      <p>
-        Wilayah itu kemudian diawasi Soppeng, namun konflik antara Bone, Soppeng, dan Ajatappareng/Nepo di pertengahan abad ke-16 membuat Soppeng menguasai seluruh wilayah tersebut, termasuk pesisir barat.
-      </p>
-    </li>
-    <li>
-      <p>
-        Untuk keseluruhan wilayah antara sungai Batu Pute dengan sungai Takkalasi, oleh Raja Soppeng diberi nama Soppeng Riaja yang artinya Soppeng Bagian Barat.
-      </p>
-    </li>
-    <li>
-      <p>
-        Nama “Ajakkang” berasal dari kata “jakka” (sisir), terkait legenda putra Kerajaan Luwu’ yang kehilangan sisir di tempat ini. Nama ini juga melambangkan musyawarah—seperti menyisir benang kusut—untuk menyelesaikan masalah bersama.
-      </p>
-    </li>
-    <li>
-      <p>
-        Pada tahun 1900 terbentuklah Kampung Ajakkang dan dikepalai oleh Anre Guru. Berikut adalah daftar nama Anre Guru yang pernah menjabat sebagai Kepala Kampung Ajakkang:
-        <ol type="a">
-          <li>Anre Guru Laikki pada tahun 1880 – 1900</li>
-          <li>Anre Guru Lagala pada tahun 1900 – 1910</li>
-          <li>Anre Guru Lakenta pada tahun 1910 – 1920</li>
-          <li>Anre Guru Abd. Rahim pada tahun 1920 – 1930</li>
-        </ol>
-      </p>
-    </li>
-    <li>
-      <p>
-        Pada Tahun 1954 Kampung Ajakkang dimekarkan menjadi 2 Kampung yaitu Kampung Baru dan Kampung Ajakkang. Pada Tahun itu juga dipilih Kepala Dusun dan masing-masing mengepalai dusun tersebut selama kurang lebih 15 tahun lamanya.
-      </p>
-    </li>
-    <li>
-      <p>
-        Setelah diberlakukannya UU Nomor 5 Tahun 1979 tentang Pemerintahan Desa, maka Ajakkang dibentuk menjadi Desa berdasarkan SK Gubernur Provinsi Sulawesi Selatan Nomor 450/XII/1965, tanggal 20 Desember 1965.
-      </p>
-    </li>
-    <li>
-      <p>
-        Pada Tahun 1995 Desa Ajakkang kembali dimekarkan menjadi 5 Dusun yaitu:
-        <ol type="a">
-          <li>Dusun Ajakkang, Kepala Dusunnya M. Nasar</li>
-          <li>Dusun Latappareng, Kepala Dusunnya Buhari</li>
-          <li>Dusun Kamp. Baru, Kepala Dusunnya Abd. Muttalib</li>
-          <li>Dusun Minangatoa, Kepala Dusunnya M. Nuh</li>
-          <li>Dusun Paccekke, Kepala Dusunnya La Tahe</li>
-        </ol>
-      </p>
-    </li>
-    <li>
-      <p>
-        Akan tetapi pada tahun 2000 Dusun Paccekke berubah menjadi Desa, sehingga sampai sekarang Desa Ajakkang hanya terdiri menjadi 4 Dusun.
-      </p>
-    </li>
-    <li>
-      <p>
-        Dengan diberlakukannya Undang-undang Nomor 22 Tahun 1999 dan Undang-undang Nomor 32 Tahun 2004 sebagai pengganti Undang-undang sebelumnya, tentang Pemerintahan Desa, maka Desa Ajakkang memposisikan diri sebagai Desa otonom dengan mengedepankan partisipasi dan peran serta masyarakat dalam proses pembangunan.
-      </p>
-    </li>
-  </ol>
-</div>
+          <h3>Sejarah Desa</h3>
+
+          @if ($profilDesa && $profilDesa->sejarah)
+          <p style="white-space: pre-line;">
+            {{ $profilDesa->sejarah }}
+          </p>
+          @else
+          <p class="text-muted fst-italic">
+            Sejarah Desa Ajakkang belum tersedia.
+          </p>
+          @endif
+        </div>
+
+
       </div>
     </div>
   </div>
-  
+
 </section>
 
 <section id="demografi" class="profil-section">
@@ -150,7 +87,7 @@
     <div class="demografi-grid">
       <div class="card-modern demografi-card" data-aos="zoom-in" data-aos-delay="100">
         <div class="demografi-icon"><i class="bi bi-people-fill"></i></div>
-        <h3 class="demografi-number counter" data-target="{{ $data->total_penduduk }}">0</h3>
+        <h3 class="demografi-number counter" data-target="{{ $data->total_penduduk }}"">0</h3>
         <p class="demografi-label">Total Penduduk</p>
       </div>
       <div class="card-modern demografi-card" data-aos="zoom-in" data-aos-delay="200">
@@ -292,7 +229,6 @@
 
 @push('styles')
 <style>
-  
   :root {
     --primary: #28a745;
     --primary-light: #4dd08a;
@@ -354,11 +290,11 @@
   }
 
   /* Portfolio Info Sidebar */
-  .portfolio-details{
+  .portfolio-details {
     padding-top: 0;
     margin-top: 0;
   }
-  
+
   .portfolio-info {
     background: white;
     border-radius: var(--radius);
@@ -389,6 +325,21 @@
     padding: 0;
     overflow: hidden;
   }
+
+  .sejarah-desa p {
+    margin-bottom: 0.1rem;
+    line-height: 1.8;
+  }
+
+  .sejarah-desa ol,
+  .sejarah-desa ul {
+    padding-left: 1rem;
+  }
+
+  .sejarah-desa li {
+    margin-bottom: 0.1rem;
+  }
+
 
   /* Demografi */
   .demografi-grid {
@@ -501,7 +452,7 @@
     width: 100%;
     overflow: hidden;
   }
- 
+
 
   .peta-image img {
     width: 100%;
@@ -586,10 +537,11 @@
     }
   }
 
-  @media (min-width: 320px) and (max-width: 767px){
+  @media (min-width: 320px) and (max-width: 767px) {
     .petdes {
       padding: 0 !important;
     }
+
     .petdes img {
       width: 100% !important;
       height: auto !important;
@@ -622,7 +574,7 @@
 
 @push('scripts')
 <script>
-   const lightbox = GLightbox({
+  const lightbox = GLightbox({
     selector: '.petdes'
   });
 

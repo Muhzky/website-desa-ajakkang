@@ -24,10 +24,10 @@ use Filament\Tables\Actions\DeleteAction;
 
 class DokumenPerencanaanResource extends Resource
 {
-    protected static ?int $navigationSort = 12;
+    protected static ?int $navigationSort = 18;
     protected static ?string $model = DokumenPerencanaan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Transparansi';
     public static function getPluralModelLabel(): string
     {
