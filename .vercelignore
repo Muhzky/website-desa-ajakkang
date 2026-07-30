@@ -1,1 +1,7 @@
 /vendor
+/storage/app/public
+/storage/logs
+/storage/debugbar
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/testing
