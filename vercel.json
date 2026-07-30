@@ -3,8 +3,8 @@
       "framework": null,
     "functions": {
         "api/index.php": {
-            "runtime": "vercel-php@0.9.0",
-            "excludeFiles": "{vendor/**/{test,tests,docs,doc,examples}/**,vendor/**/*.md,vendor/**/CHANGELOG*,vendor/**/README*,vendor/**/LICENSE*}"
+            "runtime": "vercel-php@0.7.4",
+            "excludeFiles": "{public/assets/**,public/build/**,vendor/**/{test,tests,docs,doc,examples}/**,vendor/**/*.md,vendor/**/CHANGELOG*,vendor/**/README*,vendor/**/LICENSE*}"
         }
     },
     "routes": [
